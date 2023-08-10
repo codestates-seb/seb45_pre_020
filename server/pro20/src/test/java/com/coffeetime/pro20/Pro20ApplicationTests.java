@@ -8,6 +8,7 @@ class Pro20ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//주석추가~
 	}
 
 }
