@@ -12,8 +12,8 @@ import './App.css';
 export default function App() {
   return (
     <BrowserRouter>
-      <Header />    
-      
+      <Header />
+
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
@@ -23,6 +23,6 @@ export default function App() {
       </Routes>
 
       <Footer />
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
