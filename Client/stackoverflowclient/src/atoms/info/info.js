@@ -1,22 +1,33 @@
 import './info.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAddClicked } from '../../redux/reducers/commentSilce';
 
 const Info = ({ data }) => {
-  const title = data.postTitle;
-  const recommendCount = data.recommendCount;
-
+  const title = false; /*data.postTitle;*/
+  const recommendCount = 3; //data.recommendCount;
+  const openInput = useSelector((state) => state.Comment.addClicked);
+  const dispatch = useDispatch();
   const addRecommend = () => {
     //서버에 추천수 +1하는 코드
   };
-  //   const [comment, setComment] = useState(false); 전역상태로 변경
+  const openCommentinput = () => {
+    dispatch(setAddClicked(!openInput));
+  };
+  const isTrue = true;
   return (
     <div className="">
       {title ? <h2>{title}</h2> : null}
       <div>
-        <div>{user_id}</div>
+        <div>{'user_id'}</div>
         <div>
-          {modified_at ? `${created_at}에 작성` : `${modified_at}에 수정`}
+          {
+            /* {'modified_at'}*/ isTrue
+              ? `${'created_at'}에 작성`
+              : `${'modified_at'}에 수정`
+          }
         </div>
-        {adopted ? (
+        {/* {adopted ? ( */}
+        {isTrue ? (
           <div>
             <img src="./img/Selection.svg" alt="selected"></img>
             selection
@@ -28,7 +39,10 @@ const Info = ({ data }) => {
             추천
           </button>
         ) : null}
-        {recommendCount ? <button>코멘트 추가</button> : null}
+        {recommendCount ? (
+          <button onClick={openCommentinput}>코멘트 추가</button>
+        ) : null}
+        {openInput ? <input placeholder="test"></input> : null}
       </div>
     </div>
   );
