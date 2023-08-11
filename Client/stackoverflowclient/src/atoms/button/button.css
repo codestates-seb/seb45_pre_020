@@ -2,6 +2,7 @@ button {
   height: 33px;
   padding: 8px 10.4px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .ask_button {

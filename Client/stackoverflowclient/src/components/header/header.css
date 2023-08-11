@@ -16,7 +16,7 @@ header > .logo_container > a > img {
 }
 
 .logo_container {
-  flex-grow: 4;
+  flex-grow: 7;
   padding-left: 10rem;
 }
 
