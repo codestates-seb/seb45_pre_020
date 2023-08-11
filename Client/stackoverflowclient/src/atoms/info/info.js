@@ -36,13 +36,12 @@ const Info = ({ data }) => {
         {recommendCount ? (
           <button onClick={addRecommend}>
             <img src="./img/recommmend.svg" alt="recommend"></img>
-            추천
+            <label>{recommendCount}</label>
           </button>
         ) : null}
         {recommendCount ? (
           <button onClick={openCommentinput}>코멘트 추가</button>
         ) : null}
-        {openInput ? <input placeholder="test"></input> : null}
       </div>
     </div>
   );
