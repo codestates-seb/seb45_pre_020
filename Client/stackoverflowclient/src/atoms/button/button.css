@@ -1,0 +1,35 @@
+button {
+  height: 33px;
+  padding: 8px 10.4px;
+  border-radius: 5px;
+}
+
+.ask_button {
+  background-color: hsl(27,90%,55%);
+  border: 1px solid hsl(27,90%,55%);
+  color: white;
+}
+
+.login_button {
+  background-color: hsl(205,46%,92%);
+  border: 1px solid hsl(205,46%,92%);
+  margin: 0 0 0 4px;
+  color: hsl(205,47%,42%);
+}
+
+.login_button:hover {
+  background-color: hsl(205,57%,81%);
+  border: 1px solid hsl(205,57%,81%);
+}
+
+.signup_button {
+  background-color: hsl(206,100%,52%);
+  border: 1px solid hsl(206,100%,52%);
+  margin: 0 0 0 4px;
+  color: white;
+}
+
+.signup_button:hover {
+  background-color: hsl(209,100%,37.5%);
+  border: 1px solid hsl(209,100%,37.5%);
+}

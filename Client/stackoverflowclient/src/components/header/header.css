@@ -1,0 +1,25 @@
+header {
+  width: 100%;
+  /* height: 3rem; */
+  line-height: 3.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: solid 1px rgb(187, 184, 184);
+  border-top: solid 2px hsl(27,90%,55%);
+  display: flex;
+}
+
+header > .logo_container > a > img {
+  vertical-align: middle;
+}
+
+.logo_container {
+  flex-grow: 4;
+  padding-left: 10rem;
+}
+
+.button_container {
+  flex-grow: 1.5;
+}
