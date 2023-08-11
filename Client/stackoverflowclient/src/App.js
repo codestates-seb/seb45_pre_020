@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Main from './Pages/Main';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup';
-import Post from './Pages/Post';
-import Ask from './Pages/Ask';
+import { BrowserRouter } from 'react-router-dom';
+import Header from './components/header/header';
+// import Footer from './components/Footer';
+// import Main from './Pages/Main';
+// import Login from './Pages/Login';
+// import Signup from './Pages/Signup';
+// import Post from './Pages/Post';
+// import Ask from './Pages/Ask';
 
 import './App.css';
 
@@ -14,7 +14,7 @@ export default function App() {
     <BrowserRouter>
       <Header />
 
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route pate="/signup" element={<Signup />} />
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/ask" element={<Ask />} />
       </Routes>
 
-      <Footer />
+      <Footer /> */}
     </BrowserRouter>
   );
 }
