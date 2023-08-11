@@ -1,14 +1,28 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import './content.css';
 
 const Content = () => {
   const content = 'content'; //postContents || answerContents || commentContents;
   const openInput = useSelector((state) => state.Comment.addClicked);
-
+  const [inputVal, setInputVal] = useState('');
+  console.log(inputVal);
+  const addComment = () => {
+    //todo: redux로 comment를 서버에 전송
+  };
   return (
-    <div>
-      <div>{content}</div>
-      {openInput ? <input placeholder="test"></input> : null}
+    <div className="content_container">
+      <div className="content">{content}</div>
+      {openInput ? (
+        <div className="input_container">
+          <input
+            placeholder="코멘트를 작성해 주세요"
+            onChange={(e) => setInputVal(e.target.value)}
+            className="comment_input"
+          ></input>
+          <button onClick={addComment}>작성하기</button>
+        </div>
+      ) : null}
     </div>
   );
 };

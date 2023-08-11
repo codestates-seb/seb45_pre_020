@@ -21,7 +21,7 @@ export default function App() {
         <Route path="/post/:id" element={<Post />} />
         <Route path="/ask" element={<Ask />} /> */}
       </Routes>
-{/* 
+      {/* 
       <Footer /> */}
     </BrowserRouter>
   );
