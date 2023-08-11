@@ -18,13 +18,13 @@ const Info = ({ data }) => {
         </div>
         {adopted ? (
           <div>
-            <img src="./img/Selection.svg"></img>
+            <img src="./img/Selection.svg" alt="selected"></img>
             selection
           </div>
         ) : null}
         {recommendCount ? (
           <button onClick={addRecommend}>
-            <img src="./img/recommmend.svg"></img>
+            <img src="./img/recommmend.svg" alt="recommend"></img>
             추천
           </button>
         ) : null}
