@@ -21,7 +21,7 @@ const Info = (/*{ data }*/) => {
         {isTrue ? (
           <div className="postinfo selected">
             <img
-              src="./img/Selection.svg"
+              src="/img/Selection.svg"
               alt="selected"
               className="adopted"
             ></img>
@@ -42,8 +42,8 @@ const Info = (/*{ data }*/) => {
         {recommendCount ? (
           <div className="postinfo">
             <button onClick={addRecommend}>
-              <img src="./img/recommmend.svg" alt="recommend"></img>
               <label>{recommendCount}</label>
+              <img src="/img/recommend.svg" alt="recommend"></img>
             </button>
           </div>
         ) : null}
