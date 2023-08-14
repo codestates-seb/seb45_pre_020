@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/reducers/loginSlice';
+import './Login.css';
+import axios from 'axios';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,32 +19,26 @@ export default function Login() {
   };
 
   const onClickLogin = () => {
-    // e.preventDefault();
+    const userinfo = { inputEmail, inputPw };
 
-    // console.log('Email', inputEmail);
-    // console.log('Password', inputPw);
-
-    // let body = {
-    //   email: inputEmail,
-    //   password: inputPw,
-    // };
-    const user = { inputEmail, inputPw };
-    dispatch(login(user));
+    axios
+      .post('/auths/process_login', userinfo)
+      .then((response) => {
+        console.log(response.data.message);
+        dispatch(login(response.data.user));
+      })
+      .catch((error) => {
+        console.error('Error : ', error);
+      });
   };
 
   return (
     <div>
-      <form
-        style={{ display: 'flex', flexDirection: 'column' }}
-        onSubmit={onClickLogin}
-      >
-        <h2>Email</h2>
-        <input type="email" value={inputEmail} onChange={handleInputEmail} />
-        <h2>Password</h2>
-        <input type="password" value={inputPw} onChange={handleInputPw} />
-        <br />
-        <button formAction="">Login</button>
-      </form>
+      <h2>Email</h2>
+      <input type="email" value={inputEmail} onChange={handleInputEmail} />
+      <h2>Password</h2>
+      <input type="password" value={inputPw} onChange={handleInputPw} />
+      <button onClick={onClickLogin}>Login</button>
     </div>
   );
 }

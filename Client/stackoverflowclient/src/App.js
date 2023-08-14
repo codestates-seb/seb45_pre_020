@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header/header';
-// import Footer from './components/Footer';
+import Footer from './components/footer/footer';
 import Main from './Pages/Main/Main';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
@@ -22,7 +22,7 @@ export default function App() {
         {/* <Route path="/ask" element={<Ask />} /> */}
       </Routes>
 
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }
