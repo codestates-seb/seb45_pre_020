@@ -11,20 +11,20 @@ export default function Main() {
 
   return (
     <>
-    <div className="MainContainer">
-      <Search searchRef={searchRef} />
-    </div>
-    <div className="MainPostLinkContainer">
-      {data.map((datas) => (
-    <PostLink 
-     postTitle={datas.post.info.postTitle}
-     createdAt={datas.post.info.createdAt}
-     user_Id={datas.post.info.user_id}
-     adopted={datas.post.info.adopted}
-     content={datas.post.content}
-     />
-      ))}
-    </div>
+      <div className="MainContainer">
+        <Search searchRef={searchRef} />
+      </div>
+      <div className="MainPostLinkContainer">
+        {data.map((datas) => (
+          <PostLink
+            postTitle={datas.post.info.postTitle}
+            createdAt={datas.post.info.createdAt}
+            user_Id={datas.post.info.user_id}
+            adopted={datas.post.info.adopted}
+            content={datas.post.content}
+          />
+        ))}
+      </div>
     </>
   );
 }

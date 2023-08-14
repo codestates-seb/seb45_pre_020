@@ -14,10 +14,16 @@
     border-bottom-left-radius: 10px;
 }
 
-.input_container {
+.comment_add_container {
     background-color: #a0c3aa;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input_container {
     display: flex;
     flex-direction: row;
     justify-content: stretch;

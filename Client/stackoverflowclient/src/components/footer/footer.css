@@ -2,8 +2,9 @@ footer {
   background-color: #f5f5f5;
   padding: 20px 0;
   width: 100vw;
-  position: absolute;
-  bottom: 0;
+  position: relative;
+  transform: translateY(-100%);
+  height: ;
   text-align: center;
 }
 

@@ -13,13 +13,17 @@ const Content = ({ content, type }) => {
     <div className="content_container">
       <div className="content">{content}</div>
       {openInput && type === 'answer' ? (
-        <div className="input_container">
-          <textarea
-            placeholder="코멘트를 작성해 주세요"
-            onChange={(e) => setInputVal(e.target.value)}
-            className="comment_input"
-          ></textarea>
-          <button onClick={addComment}>작성하기</button>
+        <div className="comment_add_container">
+          <label htmlFor="comment_input">코멘트 추가</label>
+          <div className="input_container">
+            <textarea
+              placeholder="코멘트를 작성해 주세요"
+              onChange={(e) => setInputVal(e.target.value)}
+              className="comment_input"
+              id="comment_input"
+            ></textarea>
+            <button onClick={addComment}>작성하기</button>
+          </div>
         </div>
       ) : null}
     </div>

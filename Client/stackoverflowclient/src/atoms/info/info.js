@@ -3,7 +3,7 @@ import { setAddClicked } from '../../redux/reducers/commentSilce';
 import '../button/button.css';
 import './info.css';
 
-const Info = ({ data }) => {
+const Info = ({ data, type }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
   const dispatch = useDispatch();
   const addRecommend = () => {
@@ -14,9 +14,11 @@ const Info = ({ data }) => {
   };
   return (
     <div className="postinfo_container">
-      <div className="postinfo_title">
-        {data.postTitle ? <h2>{data.postTitle}</h2> : null}
-      </div>
+      {type === 'question' ? (
+        <div className="postinfo_title">
+          {data.postTitle ? <h2>{data.postTitle}</h2> : null}
+        </div>
+      ) : null}
       <div className="postinfo_body_container">
         {data.adopted ? (
           <div className="postinfo selected">
@@ -34,7 +36,7 @@ const Info = ({ data }) => {
             ? `${data.modifiedAt}에 수정`
             : `${data.createdAt}에 작성`}
         </div>
-        {data.recommendCount ? (
+        {type === 'answer' ? (
           <div className="postinfo">
             <button onClick={addRecommend} className="recommend_button">
               <label>{data.recommendCount}</label>
@@ -42,7 +44,7 @@ const Info = ({ data }) => {
             </button>
           </div>
         ) : null}
-        {data.recommendCount ? (
+        {type === 'answer' ? (
           <div className="postinfo">
             <button onClick={openCommentinput} className="addComment_button">
               코멘트 추가

@@ -51,20 +51,20 @@ const Post = () => {
   return (
     <div className="post_body_container" id={data.post.info.post_id}>
       <div className="post">
-        <Info data={data.post.info} />
+        <Info data={data.post.info} type={data.post.type} />
         <Content content={data.post.content} type={data.post.type} />
       </div>
       {data.post.info.answerList.map((el) => (
         <div className="answerlist" key={el.info.user_id}>
           <div className="answser">
-            <Info data={el.info} />
+            <Info data={el.info} type={el.type} />
             <Content content={el.content} type={el.type} />
           </div>
           <div className="comment_container">
             {el.comment
               ? el.comment.map((el) => (
                   <div className="commentlist" key={el.info.user_id}>
-                    <Info data={el.info} />
+                    <Info data={el.info} type={el.type} />
                     <Content content={el.content} type={el.type} />
                   </div>
                 ))
