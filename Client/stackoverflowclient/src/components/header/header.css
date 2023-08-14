@@ -6,6 +6,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
+  background-color: #ffffff;
   border-bottom: solid 1px rgb(187, 184, 184);
   border-top: solid 2px hsl(27,90%,55%);
   display: flex;
@@ -16,10 +17,10 @@ header > .logo_container > a > img {
 }
 
 .logo_container {
-  flex-grow: 7;
-  padding-left: 10rem;
+  flex-grow: 2;
+  padding-left: 7rem;
 }
 
 .button_container {
-  flex-grow: 1.5;
+  flex-grow: 1;
 }

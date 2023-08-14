@@ -33,7 +33,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="login_form">
       <h2>Email</h2>
       <input type="email" value={inputEmail} onChange={handleInputEmail} />
       <h2>Password</h2>
