@@ -8,12 +8,12 @@
     justify-content: center;
     align-items: center;
     width : 600px;
-    height: 20px;
+    height: 15px;
     background-color: white;
     border: 1.5px solid #c8cdd4;
     border-radius: 0.7rem;
     padding: 0.75rem;
-    margin-top: 4rem;
+    margin-top: 6rem;
 }
 
 .main-search-input {
@@ -23,7 +23,7 @@
     width: 100%;
     border: none;
     border-radius: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 2.5rem;
 }
 
