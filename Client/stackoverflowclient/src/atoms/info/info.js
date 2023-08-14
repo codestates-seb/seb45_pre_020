@@ -1,6 +1,7 @@
-import './info.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddClicked } from '../../redux/reducers/commentSilce';
+import '../button/button.css';
+import './info.css';
 
 const Info = ({ data }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
@@ -14,7 +15,9 @@ const Info = ({ data }) => {
   return (
     <div className="postinfo_container">
       <div className="postinfo_title">
-        {/* {adopted ? ( */}
+        {data.postTitle ? <h2>{data.postTitle}</h2> : null}
+      </div>
+      <div className="postinfo_body_container">
         {data.adopted ? (
           <div className="postinfo selected">
             <img
@@ -25,9 +28,6 @@ const Info = ({ data }) => {
             selection
           </div>
         ) : null}
-        {data.postTitle ? <h2>{data.postTitle}</h2> : null}
-      </div>
-      <div className="postinfo_body_container">
         <div className="postinfo">{data.user_id}</div>
         <div className="postinfo">
           {data.modifiedAt
@@ -36,7 +36,7 @@ const Info = ({ data }) => {
         </div>
         {data.recommendCount ? (
           <div className="postinfo">
-            <button onClick={addRecommend}>
+            <button onClick={addRecommend} className="recommend_button">
               <label>{data.recommendCount}</label>
               <img src="/img/recommend.svg" alt="recommend"></img>
             </button>
@@ -44,7 +44,9 @@ const Info = ({ data }) => {
         ) : null}
         {data.recommendCount ? (
           <div className="postinfo">
-            <button onClick={openCommentinput}>코멘트 추가</button>
+            <button onClick={openCommentinput} className="addComment_button">
+              코멘트 추가
+            </button>
           </div>
         ) : null}
       </div>

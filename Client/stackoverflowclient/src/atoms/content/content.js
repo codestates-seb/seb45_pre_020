@@ -14,11 +14,11 @@ const Content = ({ content, type }) => {
       <div className="content">{content}</div>
       {openInput && type === 'answer' ? (
         <div className="input_container">
-          <input
+          <textarea
             placeholder="코멘트를 작성해 주세요"
             onChange={(e) => setInputVal(e.target.value)}
             className="comment_input"
-          ></input>
+          ></textarea>
           <button onClick={addComment}>작성하기</button>
         </div>
       ) : null}
