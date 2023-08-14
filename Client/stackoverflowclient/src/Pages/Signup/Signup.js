@@ -27,7 +27,7 @@ export default function Signup() {
     const newUser = { inputName, inputEmail, inputPw };
 
     axios
-      .post('/', newUser) // 회원정보 서버로 전달
+      .post('/coffeeTime', newUser) // 회원정보 서버로 전달
       .then((response) => {
         console.log(response.data.message); // 백엔드에서 보낸 응답 메시지
         dispatch(signup(newUser)); // 리덕스 스토어 상태 업데이트
@@ -38,7 +38,7 @@ export default function Signup() {
   };
 
   return (
-    <div>
+    <div className="signup_form">
       <h2>Email</h2>
       <input type="text" value={inputName} onChange={handleInputName} />
       <h2>Name</h2>

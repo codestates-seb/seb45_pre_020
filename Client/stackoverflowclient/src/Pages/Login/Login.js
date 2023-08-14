@@ -22,7 +22,7 @@ export default function Login() {
     const userinfo = { inputEmail, inputPw };
 
     axios
-      .post('/auths/process_login', userinfo)
+      .post('https://fc05-221-150-55-48.ngrok-free.app/coffeeTime', userinfo)
       .then((response) => {
         console.log(response.data.message);
         dispatch(login(response.data.user));
