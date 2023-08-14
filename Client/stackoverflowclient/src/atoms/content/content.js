@@ -2,8 +2,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import './content.css';
 
-const Content = () => {
-  const content = 'content'; //postContents || answerContents || commentContents;
+const Content = ({ content, type }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
   const [inputVal, setInputVal] = useState('');
   console.log(inputVal);
@@ -13,7 +12,7 @@ const Content = () => {
   return (
     <div className="content_container">
       <div className="content">{content}</div>
-      {openInput ? (
+      {openInput && type === 'answer' ? (
         <div className="input_container">
           <input
             placeholder="코멘트를 작성해 주세요"
