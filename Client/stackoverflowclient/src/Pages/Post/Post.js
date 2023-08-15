@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './Post.css';
 
 const Post = () => {
+  //todo  post.css 에 있는거처럼 페이지별로 wrapper 설정 필요 height:auto, min-height:100%, padding-buttom:footer의 height
   const data = {
     post: {
       info: {
