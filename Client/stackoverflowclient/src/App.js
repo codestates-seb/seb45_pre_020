@@ -5,7 +5,7 @@ import Main from './Pages/Main/Main';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
 import Post from './Pages/Post/Post';
-// import Ask from './Pages/Ask';
+import Ask from './Pages/Ask/Ask';
 
 import './App.css';
 
@@ -19,7 +19,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/post/:id" element={<Post />} />
-        {/* <Route path="/ask" element={<Ask />} /> */}
+        <Route path="/ask" element={<Ask />} />
       </Routes>
 
       <Footer />
