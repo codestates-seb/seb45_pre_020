@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
 public class MemberResponse {
 
     private Long id;
-//    private String userId;
     private String password;
-    private String name;
+    private String userName;
     private String email;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
