@@ -32,6 +32,7 @@
 
 .comment_input {
     flex: 5 1 0;
+    border-radius: 5px;
 }
 
 .add_button_container {
@@ -41,12 +42,12 @@
 }
 
 .add_comment_button {
-    
+    box-shadow: 0 2px 1px rgba(0,0,0,0.2);
     background-color: white;
     border: 1px solid white;
  }
  
  .add_comment_button:hover {
-     background-color: rgb(176, 176, 176);
-     border: 1px solid rgb(176, 176, 176);
+     background-color: rgb(228, 228, 228);
+     border: 1px solid rgb(228, 228, 228);
  }

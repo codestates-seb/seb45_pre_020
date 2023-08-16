@@ -5,7 +5,6 @@ import './Post.css';
 import axios from 'axios';
 
 const Post = () => {
-  //todo  post.css 에 있는거처럼 페이지별로 wrapper 설정 필요 height:auto, min-height:100%, padding-buttom:footer의 height
   const data = {
     post: {
       info: {
@@ -52,6 +51,7 @@ const Post = () => {
     axios
       .get('url')
       .then(() => {
+        //인자에 res 추가필요
         //setData(res.data)
         //console.log(res.data.message);
       })

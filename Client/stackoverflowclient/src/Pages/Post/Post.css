@@ -1,10 +1,10 @@
 .post_body_container {
-    margin-top: 4rem;
     margin-left: 15vw;
     width: 70vw;
     height: auto;
     min-height: 100%;
-    padding-bottom: 50px; 
+    padding: 4rem 2vw 50px 2vw; 
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -47,6 +47,7 @@
 .answer_input {
     flex: 5 1 0;
     height: 20vh;
+    border-radius: 5px;
 }
 
 .button_container {
@@ -59,9 +60,10 @@
 .add_answer_button {
    background-color: white;
    border: 1px solid white;
+   box-shadow: 0 2px 1px rgba(0,0,0,0.2);
 }
 
 .add_answer_button:hover {
-    background-color: rgb(176, 176, 176);
-    border: 1px solid rgb(176, 176, 176);
+    background-color: rgb(228, 228, 228);
+    border: 1px solid rgb(228, 228, 228);
 }
