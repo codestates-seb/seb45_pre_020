@@ -9,6 +9,7 @@ export default function PostLink({
   adopted,
   content,
   postId,
+  modifiedAt,
 }) {
   const navigate = useNavigate();
 
@@ -16,10 +17,10 @@ export default function PostLink({
     navigate(`/post/${postId}`);
   };
 
-  const userInfoData = {
-    'data-created-at': createdAt,
-    'data-user-id': user_Id,
-  };
+  //   const userInfoData = {
+  //     'data-created-at': createdAt,
+  //     'data-user-id': user_Id,
+  //   };
 
   return (
     <div
@@ -30,8 +31,17 @@ export default function PostLink({
       onKeyDown={handlePostClick}
     >
       <div className="CardTopsection">
-        <h3>{postTitle}</h3>
-        <div className="Selection" data-status={adopted} />
+        <h3 className="CardPostTitle">{postTitle}</h3>
+        {adopted ? (
+          <div className="Selection">
+            <img
+              src="/img/Selection.svg"
+              alt="selected"
+              className="adopted"
+            ></img>
+            <span className="selectionText">selection</span>
+          </div>
+        ) : null}
       </div>
       <div className="CardMiddleSection">
         <div className="Content">
@@ -40,7 +50,10 @@ export default function PostLink({
       </div>
       <div className="CardBottomSection">
         {/* <div className="Tags" tags={tags} /> */}
-        <div className="UserInfo" {...userInfoData} />
+        <div className="UserInfo">{user_Id}</div>
+        <div className="UserCreatedAt">
+          {modifiedAt ? `${modifiedAt}에 수정` : `${createdAt}`}
+        </div>
       </div>
     </div>
   );

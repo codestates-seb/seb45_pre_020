@@ -24,6 +24,7 @@ export default function Main() {
             postId={datas.post.info.post_id}
             adopted={datas.post.info.adopted}
             content={datas.post.content}
+            modifiedAt={datas.post.info.modifiedAt}
           />
         ))}
       </div>
