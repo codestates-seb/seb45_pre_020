@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { signup } from '../../redux/reducers/signupSlice';
 import './Signup.css';
 import axios from 'axios';
 
 export default function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [inputName, setInputName] = useState('');
   const [inputEmail, setInputEmail] = useState('');
@@ -39,6 +41,7 @@ export default function Signup() {
       .then((response) => {
         console.log(response.data.message); // 백엔드에서 보낸 응답 메시지
         dispatch(signup(newUser)); // 리덕스 스토어 상태 업데이트
+        navigate('/login');
       })
       .catch((error) => {
         console.error('Error : ', error);
@@ -46,14 +49,18 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup_form">
-      <h2>Name</h2>
-      <input type="text" value={inputName} onChange={handleInputName} />
-      <h2>Email</h2>
-      <input type="email" value={inputEmail} onChange={handleInputEmail} />
-      <h2>Password</h2>
-      <input type="password" value={inputPw} onChange={handleInputPw} />
-      <button onClick={onClickSignup}>회원가입</button>
+    <div className="signup_page">
+      <div className="signup_form">
+        <div className="signup_wrapper">
+          <h2>Name</h2>
+          <input type="text" value={inputName} onChange={handleInputName} />
+          <h2>Email</h2>
+          <input type="email" value={inputEmail} onChange={handleInputEmail} />
+          <h2>Password</h2>
+          <input type="password" value={inputPw} onChange={handleInputPw} />
+          <button onClick={onClickSignup}>회원가입</button>
+        </div>
+      </div>
     </div>
   );
 }
