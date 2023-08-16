@@ -5,6 +5,7 @@
     flex-direction: column;
     padding: 80px 100px 70px 230px;
 }
+
   .question-heading {
     font-size: 1.5rem;
     font-weight: bold;
@@ -39,6 +40,7 @@
 
     .AskTitleButton {
     width: 10%;
+    min-width : 50px;
     height: 2.5rem;
     font-size: 0.8rem;
     background-color: hsl(206,100%,52%);
@@ -82,8 +84,11 @@
     border: 2px solid rgb(107,162,217);
     }
 
+
     .AskBodyButton {
     width: 20%;
+    min-width: 120px;
+    white-space: nowrap;
     height: 2.5rem;
     font-size: 0.8rem;
     background-color: hsl(206,100%,52%);
@@ -95,3 +100,9 @@
     border-radius: 5px;
     cursor: pointer;
     }
+
+
+    .AskBodyButton:hover {
+      background-color: hsl(209,100%,37.5%);
+      border: 1px solid hsl(209,100%,37.5%);
+        }
