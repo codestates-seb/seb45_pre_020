@@ -30,7 +30,7 @@ const Info = ({ data, type }) => {
             selection
           </div>
         ) : null}
-        <div className="postinfo">{data.user_id}</div>
+        <div className="postinfo">{`작성자:${data.user_id}`}</div>
         <div className="postinfo">
           {data.modifiedAt
             ? `${data.modifiedAt}에 수정`

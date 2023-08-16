@@ -1,13 +1,40 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { setAddClicked } from '../../redux/reducers/commentSilce';
+import axios from 'axios';
 import './content.css';
 
 const Content = ({ content, type }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
   const [inputVal, setInputVal] = useState('');
-  console.log(inputVal);
+  const dispatch = useDispatch();
+  console.log(
+    inputVal,
+    new Date().toLocaleString().slice(0, 11).replace(/(\s*)/g, ''),
+  );
   const addComment = () => {
-    //todo: redux로 comment를 서버에 전송
+    const comment = {
+      info: {
+        user_id: '',
+        createdAt: new Date()
+          .toLocaleString()
+          .slice(0, 11)
+          .replace(/(\s*)/g, ''),
+      },
+      content: inputVal,
+      type: 'comment',
+    };
+    //comment와 answer_id 둘다 넘겨줘야함
+    //todo:id도 넘겨야함
+    axios
+      .post('url', comment)
+      .then((res) => {
+        console.log(res.data.message);
+        dispatch(setAddClicked(!openInput));
+      })
+      .catch((error) => {
+        console.error('Error : ', error);
+      });
   };
   return (
     <div className="content_container">
@@ -22,7 +49,11 @@ const Content = ({ content, type }) => {
               className="comment_input"
               id="comment_input"
             ></textarea>
-            <button onClick={addComment}>작성하기</button>
+            <div className="add_button_container">
+              <button onClick={addComment} className="add_comment_button">
+                작성하기
+              </button>
+            </div>
           </div>
         </div>
       ) : null}

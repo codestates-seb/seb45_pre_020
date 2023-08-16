@@ -4,7 +4,7 @@
     width: 70vw;
     height: auto;
     min-height: 100%;
-    padding-bottom: ; 
+    padding-bottom: 50px; 
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -32,7 +32,7 @@
 .answer_add_container {
     background-color: #a0c3aa;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;

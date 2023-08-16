@@ -10,14 +10,14 @@
     background-color: #f1e5d4;
     color: black;
     padding: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .comment_add_container {
     background-color: #a0c3aa;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 20px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -31,5 +31,22 @@
 }
 
 .comment_input {
-    flex: 2 1 auto;
+    flex: 5 1 0;
 }
+
+.add_button_container {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+}
+
+.add_comment_button {
+    
+    background-color: white;
+    border: 1px solid white;
+ }
+ 
+ .add_comment_button:hover {
+     background-color: rgb(176, 176, 176);
+     border: 1px solid rgb(176, 176, 176);
+ }

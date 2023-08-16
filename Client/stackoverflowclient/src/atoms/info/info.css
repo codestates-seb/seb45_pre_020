@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color: #f2f2f2;
     border-bottom: 1px solid black;
 }
@@ -54,8 +56,8 @@
 }
 
 .recommend_button:hover {
-    background-color: rgb(25, 140, 25);
-    border: 1px solid rgb(25, 140, 25);
+    background-color: rgb(100, 200, 100);
+    border: 1px solid rgb(100, 200, 100);
     color: white;
 }
 

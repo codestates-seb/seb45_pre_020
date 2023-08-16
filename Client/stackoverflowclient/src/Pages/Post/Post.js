@@ -1,7 +1,8 @@
 import Info from '../../atoms/info/info';
 import Content from '../../atoms/content/content';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Post.css';
+import axios from 'axios';
 
 const Post = () => {
   //todo  post.css 에 있는거처럼 페이지별로 wrapper 설정 필요 height:auto, min-height:100%, padding-buttom:footer의 height
@@ -45,10 +46,50 @@ const Post = () => {
       type: 'question',
     },
   };
-  const [inputVal, setInputVal] = useState('');
-  const addAnswer = () => {
-    //axios로 inputval을 answer에 추가하며 이때 info에 해당되는 정보도 보내줘야함
+  //페이지 진입시 필요 데이터를 서버에 요청
+  //const [data,setData] = useState({});
+  const getData = () => {
+    axios
+      .get('url')
+      .then((res) => {
+        //setData(res.data)
+        //console.log(res.data.message);
+      })
+      .catch((error) => {
+        console.log('Error : ', error);
+      });
   };
+  const [inputVal, setInputVal] = useState('');
+  //서버에 answer에 해당되는 데이터, 어떤 post에 추가해야하는지 post_id도 넘겨줘야함,
+  //todo:id 넘기는 부분
+  const addAnswer = () => {
+    const answer = {
+      info: {
+        user_id: '',
+        createdAt: new Date()
+          .toLocaleString()
+          .slice(0, 11)
+          .replace(/(\s*)/g, ''),
+        post_status: true, //상의 필요
+        adopted: false,
+        recommendCount: 0,
+      },
+      content: inputVal,
+      type: 'answer',
+    };
+    axios
+      .post('url', answer)
+      .then((res) => {
+        console.log(res.data.message);
+        setInputVal('');
+      })
+      .catch((error) => {
+        console.error('Error : ', error);
+      });
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className="post_body_container" id={data.post.info.post_id}>
       <div className="post">
