@@ -51,7 +51,7 @@ const Post = () => {
   const getData = () => {
     axios
       .get('url')
-      .then((res) => {
+      .then(() => {
         //setData(res.data)
         //console.log(res.data.message);
       })
