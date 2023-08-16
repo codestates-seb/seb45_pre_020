@@ -1,6 +1,7 @@
 package com.coffeetime.pro20.config;
 
 import com.coffeetime.pro20.auth.filter.JwtAuthenticationFilter;
+import com.coffeetime.pro20.auth.handler.MemberAuthenticationSuccessHandler;
 import com.coffeetime.pro20.auth.jwt.JwtTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,7 +54,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));   // (8-1)
+        configuration.setAllowedOrigins(Arrays.asList("http://ec2-15-164-48-6.ap-northeast-2.compute.amazonaws.com:8080/"));   // (8-1)
         configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));// (8-2)
         configuration.addExposedHeader("Authorization");
