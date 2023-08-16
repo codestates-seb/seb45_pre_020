@@ -15,11 +15,13 @@ export default function Main() {
         <Search searchRef={searchRef} />
       </div>
       <div className="MainPostLinkContainer">
-        {data.map((datas) => (
+        {data.map((datas, idx) => (
           <PostLink
+            key={idx}
             postTitle={datas.post.info.postTitle}
             createdAt={datas.post.info.createdAt}
             user_Id={datas.post.info.user_id}
+            postId={datas.post.info.post_id}
             adopted={datas.post.info.adopted}
             content={datas.post.content}
           />
