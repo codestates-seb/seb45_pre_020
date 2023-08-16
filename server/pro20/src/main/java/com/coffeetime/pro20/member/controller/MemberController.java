@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/members")
 @Validated
+@CrossOrigin
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
@@ -31,6 +32,7 @@ public class MemberController {
     }
 
     @PostMapping("/join")
+    @CrossOrigin
     public ResponseEntity postMember(@Valid @RequestBody MemberPostDto memberDto) {
         // (2) 매퍼를 이용해서 MemberPostDto를 Member로 변환
         Member member = mapper.memberPostDtoToMember(memberDto);
