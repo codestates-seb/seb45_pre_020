@@ -34,11 +34,22 @@ export default function Login() {
 
   return (
     <div className="login_form">
-      <h2>Email</h2>
-      <input type="email" value={inputEmail} onChange={handleInputEmail} />
-      <h2>Password</h2>
-      <input type="password" value={inputPw} onChange={handleInputPw} />
-      <button onClick={onClickLogin}>Login</button>
+      <div className="login_wrapper">
+        <h1>Login</h1>
+        <h3>Email</h3>
+        <div>
+          <input type="email" value={inputEmail} onChange={handleInputEmail} />
+        </div>
+        <h3>Password</h3>
+        <div>
+          <input type="password" value={inputPw} onChange={handleInputPw} />
+        </div>
+        <div>
+          <button className="login-button" onClick={onClickLogin}>
+            Login
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
