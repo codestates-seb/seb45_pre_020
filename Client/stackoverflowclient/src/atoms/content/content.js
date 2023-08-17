@@ -27,7 +27,7 @@ const Content = ({ content, type }) => {
     //comment와 answer_id 둘다 넘겨줘야함
     //todo:id도 넘겨야함
     axios
-      .post('url', comment)
+      .post(`${process.env.REACT_APP_API_URL}/`, comment)
       .then((res) => {
         console.log(res.data.message);
         dispatch(setAddClicked(!openInput));

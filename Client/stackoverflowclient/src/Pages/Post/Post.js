@@ -1,6 +1,6 @@
 import Info from '../../atoms/info/info';
 import Content from '../../atoms/content/content';
-import { useState, useEffect } from 'react';
+import { useState /*useEffect*/ } from 'react';
 import './Post.css';
 import axios from 'axios';
 
@@ -47,18 +47,18 @@ const Post = () => {
   };
   //페이지 진입시 필요 데이터를 서버에 요청
   //const [data,setData] = useState({});
-  const getData = () => {
-    axios
-      .get('url')
-      .then(() => {
-        //인자에 res 추가필요
-        //setData(res.data)
-        //console.log(res.data.message);
-      })
-      .catch((error) => {
-        console.log('Error : ', error);
-      });
-  };
+  // const getData = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/`)
+  //     .then(() => {
+  //       //인자에 res 추가필요
+  //       //setData(res.data)
+  //       //console.log(res.data.message);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error : ', error);
+  //     });
+  // };
   const [inputVal, setInputVal] = useState('');
   //서버에 answer에 해당되는 데이터, 어떤 post에 추가해야하는지 post_id도 넘겨줘야함,
   //todo:id 넘기는 부분
@@ -78,7 +78,7 @@ const Post = () => {
       type: 'answer',
     };
     axios
-      .post('url', answer)
+      .post(`${process.env.REACT_APP_API_URL}/`, answer)
       .then((res) => {
         console.log(res.data.message);
         setInputVal('');
@@ -87,9 +87,9 @@ const Post = () => {
         console.error('Error : ', error);
       });
   };
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
   return (
     <div className="post_body_container" id={data.post.info.post_id}>
       <div className="post">
