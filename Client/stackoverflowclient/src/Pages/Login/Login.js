@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/reducers/loginSlice';
 import './Login.css';
 import axios from 'axios';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.loginSlice.user);
 
   const [inputEmail, setInputEmail] = useState('');
@@ -34,6 +36,7 @@ export default function Login() {
         console.log('권한' + response.headers.get('Authorization'));
         console.log('리프레쉬' + response.headers.get('Refresh'));
         dispatch(login(response.data.user));
+        navigate('/');
       })
       .then(console.log(user))
       .catch((error) => {

@@ -38,6 +38,7 @@ export default function Signup() {
       .then((response) => {
         console.log(response.data.message); // 백엔드에서 보낸 응답 메시지
         dispatch(signup(newUser)); // 리덕스 스토어 상태 업데이트
+        alert('축하합니다! 회원가입이 성공했습니다!');
         navigate('/login');
       })
       .catch((error) => {
