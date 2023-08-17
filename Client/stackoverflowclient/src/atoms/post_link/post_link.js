@@ -14,7 +14,7 @@ export default function PostLink({
   const navigate = useNavigate();
 
   const handlePostClick = () => {
-    navigate(`/post/${postId}`);
+    navigate(`/post/?postId=${postId}`);
   };
 
   //   const userInfoData = {
