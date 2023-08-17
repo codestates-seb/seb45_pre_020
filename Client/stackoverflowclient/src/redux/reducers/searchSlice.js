@@ -12,13 +12,13 @@ const searchSlice = createSlice({
     setSearch: (state, action) => {
       state.searchWord = action.payload;
     },
-    filterData: (state, action)=> {
+    filterData: (state, action) => {
       let datas = [...action.payload];
-      datas = datas.filter(data => data.title.includes(state.searchWord));
+      datas = datas.filter((data) => data.title.includes(state.searchWord));
       state.searchData = datas;
-    }
-  }
-})
+    },
+  },
+});
 
 export const { setSearch, filterData } = searchSlice.actions;
-export default searchSlice
+export default searchSlice;

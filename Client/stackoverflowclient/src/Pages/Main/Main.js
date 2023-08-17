@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 // import { useDispatch, useSelector } from "react-redux";
 // import { setSearch } from "../../redux/reducers/searchSlice";
 import Search from '../../atoms/Search/Search';
@@ -8,6 +8,17 @@ import './Main.css';
 
 export default function Main() {
   const searchRef = useRef();
+
+  //   useEffect(()=>{
+  //     axios.get('http://localhost:3000/questions')
+  //     .then((res)=>{
+  //         setQuestions(res.data);
+  //     }
+  //     )
+  //     .catch(() => {
+  //         console.error('데이터를 가져오는 중에 문제가 발생했어요.');
+  //       });
+  // },[]);
 
   return (
     <>
@@ -27,6 +38,18 @@ export default function Main() {
             modifiedAt={datas.post.info.modifiedAt}
           />
         ))}
+        {/* {questions.map((question, idx) => (
+          <PostLink
+            key={idx}
+            postTitle={question.info.title}
+            createdAt={question.info.createdAt}
+            user_Id={question.info.user_id}
+            postId={question.info.post_id}
+            adopted={question.info.adopted}
+            content={question.content}
+            modifiedAt={question.info.modifiedAt}
+          />
+        ))} */}
       </div>
     </>
   );
