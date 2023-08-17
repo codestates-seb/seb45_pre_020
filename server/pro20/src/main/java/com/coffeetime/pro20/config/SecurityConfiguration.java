@@ -1,7 +1,6 @@
 package com.coffeetime.pro20.config;
 
 import com.coffeetime.pro20.auth.filter.JwtAuthenticationFilter;
-import com.coffeetime.pro20.auth.handler.MemberAuthenticationSuccessHandler;
 import com.coffeetime.pro20.auth.jwt.JwtTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
