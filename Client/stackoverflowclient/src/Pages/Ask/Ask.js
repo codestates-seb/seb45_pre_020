@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState /*useEffect*/ } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 import './Ask.css';
@@ -21,6 +21,7 @@ export default function Ask() {
   const handleContentChange = (e) => {
     const newContent = e.target.value;
     setContent(newContent);
+    setIsContentVaild(newContent.trim() !== '');
   };
 
   const handleSubmit = () => {
@@ -55,50 +56,45 @@ export default function Ask() {
       //   alert('제목과 내용을 입력해주세요.');
       // }
     }
-
-    // useEffect(() => {
-    //   if (!onLogin) {
-    //     alert('로그인이 필요합니다.');
-    //     navigate('/login');
-    //   }
-    // }, []);
-
-    return (
-      <>
-        {/* {onLogin ? ( */}
-        <div className="Allcontainer">
-          <div className="question">
-            <h2 className="question-heading">Ask a public question</h2>
-            <h3 className="question-subheading">Title</h3>
-          </div>
-          <h4 className="AskTitleTip">
-            {`Be specific and imagine you're asking a question to another person`}
-          </h4>
-          <input
-            className="AskTitleInput"
-            value={title}
-            onChange={handleTitleChange}
-            placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-          />
-          <h3 className="AskBody">Body</h3>
-          <h4 className="AskBodyTip">{`What are the details of your problem?`}</h4>
-          <textarea
-            className="AskBodyInput"
-            value={content}
-            onChange={handleContentChange}
-            disabled={!isTitleVaild}
-            placeholder="Include all the information someone would need to answer your question"
-          />
-          <button
-            className="AskBodyButton"
-            onClick={handleSubmit}
-            disabled={!isTitleVaild && !isContentVaild}
-          >
-            Post Your Question
-          </button>
-        </div>
-        {/* ) : null} */}
-      </>
-    );
   };
+  // useEffect(() => {
+  //   if (!onLogin) {
+  //     alert('로그인이 필요합니다.');
+  //     navigate('/login');
+  //   }
+  // }, []);
+
+  return (
+    <>
+      {/* {onLogin ? ( */}
+      <div className="Allcontainer">
+        <div className="question">
+          <h2 className="question-heading">Ask a public question</h2>
+          <h3 className="question-subheading">Title</h3>
+        </div>
+        <h4 className="AskTitleTip">
+          {`Be specific and imagine you're asking a question to another person`}
+        </h4>
+        <input
+          className="AskTitleInput"
+          value={title}
+          onChange={handleTitleChange}
+          placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+        />
+        <h3 className="AskBody">Body</h3>
+        <h4 className="AskBodyTip">{`What are the details of your problem?`}</h4>
+        <textarea
+          className="AskBodyInput"
+          value={content}
+          onChange={handleContentChange}
+          disabled={!isTitleVaild}
+          placeholder="Include all the information someone would need to answer your question"
+        />
+        <button className="AskBodyButton" onClick={handleSubmit}>
+          Post Your Question
+        </button>
+      </div>
+      {/* ) : null} */}
+    </>
+  );
 }
