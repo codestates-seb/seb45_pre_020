@@ -28,10 +28,7 @@ export default function Login() {
     console.log(user);
 
     axios
-      .post(
-        'https://1c30-2406-5900-705c-f80b-dcda-1ed7-5e17-6193.ngrok-free.app/auth/login',
-        userinfo,
-      )
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, userinfo)
       .then((response) => {
         console.log('메세지' + response.data.message);
         console.log('권한' + response.headers.get('Authorization'));
@@ -63,8 +60,11 @@ export default function Login() {
           </div>
           <div>
             <button className="login-button" onClick={onClickLogin}>
-              Login
+              Log in
             </button>
+            <p>
+              Don’t have an account? <a href="/signup">Sign up</a>
+            </p>
           </div>
         </div>
       </div>

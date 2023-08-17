@@ -11,6 +11,11 @@ button {
   color: white;
 }
 
+.ask_button:hover {
+  background-color: hsl(27, 75%, 45%);
+  border: 1px solid hsl(27, 75%, 45%);
+}
+
 .login_button {
   background-color: hsl(205,46%,92%);
   border: 1px solid hsl(205,46%,92%);

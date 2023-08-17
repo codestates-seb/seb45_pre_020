@@ -11,16 +11,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: solid 1px rgb(172, 172, 172);
+  border: solid 1px rgb(198, 198, 198);
   display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
   background-color: white;
   border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(210, 210, 210);
 }
 
 .login_wrapper {
-  height: 400px;
+  height: 350px;
   text-align: left;
 }
 
@@ -40,7 +41,20 @@ input {
 }
 
 .login-button {
-  margin-top: 18.7px;
+  background-color: hsl(206,100%,52%);
+  border: 1px solid hsl(206,100%,52%);
+  color: white;
+  margin-top: 22.5px;
   height: 35px;
   width: 306px;
+}
+
+.login-button:hover {
+  background-color: hsl(209,100%,37.5%);
+  border: 1px solid hsl(209,100%,37.5%);
+}
+
+a {
+  text-decoration: none;
+  color: hsl(206,100%,52%);
 }
