@@ -1,6 +1,8 @@
 package com.coffeetime.pro20.config;
 
 import com.coffeetime.pro20.auth.filter.JwtAuthenticationFilter;
+import com.coffeetime.pro20.auth.handler.MemberAuthenticationFailureHandler;
+import com.coffeetime.pro20.auth.handler.MemberAuthenticationSuccessHandler;
 import com.coffeetime.pro20.auth.jwt.JwtTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +23,11 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
+    private final MemberAuthenticationSuccessHandler memberAuthenticationSuccessHandler;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, MemberAuthenticationSuccessHandler memberAuthenticationSuccessHandler) {
         this.jwtTokenizer = jwtTokenizer;
+        this.memberAuthenticationSuccessHandler = memberAuthenticationSuccessHandler;
     }
 
     @Bean
@@ -70,7 +74,9 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);  // (2-3)
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);  // (2-4)
-            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");          // (2-5)
+            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(memberAuthenticationSuccessHandler);
+            jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler());
 
             builder.addFilter(jwtAuthenticationFilter);  // (2-6)
         }
