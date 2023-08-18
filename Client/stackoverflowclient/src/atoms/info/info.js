@@ -5,9 +5,15 @@ import './info.css';
 
 const Info = ({ data, type }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
+  const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const dispatch = useDispatch();
   const addRecommend = () => {
     //서버에 추천수 +1하는 코드
+    if (isLogin) {
+      return;
+    } else {
+      alert('로그인이 필요합니다.');
+    }
   };
   const openCommentinput = () => {
     dispatch(setAddClicked(!openInput));

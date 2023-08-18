@@ -1,6 +1,8 @@
 import Info from '../../atoms/info/info';
 import Content from '../../atoms/content/content';
+import { useNavigate } from 'react-router-dom';
 import { useState /*useEffect*/ } from 'react';
+import { useSelector } from 'react-redux';
 import data from '../../dummy/dummy';
 import './Post.css';
 import axios from 'axios';
@@ -12,6 +14,8 @@ const Post = () => {
       Number(new URLSearchParams(location.search).get('postId')),
   )[0];
   console.log(Data);
+  const isLogin = useSelector((state) => state.loginSlice.isLogin);
+  const navigate = useNavigate();
   //페이지 진입시 필요 데이터를 서버에 요청
   //const [data,setData] = useState({});
   // const getData = () => {
@@ -43,15 +47,20 @@ const Post = () => {
       content: inputVal,
       type: 'answer',
     };
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/`, answer)
-      .then((res) => {
-        console.log(res.data.message);
-        setInputVal('');
-      })
-      .catch((error) => {
-        console.error('Error : ', error);
-      });
+    if (isLogin) {
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/`, answer)
+        .then((res) => {
+          console.log(res.data.message);
+          setInputVal('');
+        })
+        .catch((error) => {
+          console.error('Error : ', error);
+        });
+    } else {
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
   };
   // useEffect(() => {
   //   getData();
@@ -84,11 +93,14 @@ const Post = () => {
         <label htmlFor="answer_input">답변 추가</label>
         <div className="answer_input_container">
           <textarea
-            placeholder="답변을 작성해주세요"
+            placeholder={
+              isLogin ? '답변을 작성해주세요.' : '로그인이 필요합니다.'
+            }
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             className="answer_input"
             id="answer_input"
+            disabled={!isLogin}
           ></textarea>
           <div className="button_container">
             <button className="add_answer_button" onClick={addAnswer}>

@@ -14,6 +14,10 @@ function Header() {
     alert('로그인이 필요합니다.');
     navigate('/login');
   };
+  const handleLogout = () => {
+    alert('로그아웃 되었습니다.');
+    dispatch(logout());
+  };
   const isLoggedIn = !!user;
 
   return (
@@ -32,7 +36,7 @@ function Header() {
           </button>
         )}
         {isLoggedIn ? (
-          <button className="logout_button" onClick={() => dispatch(logout())}>
+          <button className="logout_button" onClick={handleLogout}>
             Log out
           </button>
         ) : (
