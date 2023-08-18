@@ -8,6 +8,7 @@ button {
 .ask_button {
   background-color: hsl(27,90%,55%);
   border: 1px solid hsl(27,90%,55%);
+  margin-top: 12px;
   color: white;
 }
 
@@ -36,6 +37,18 @@ button {
 }
 
 .signup_button:hover {
+  background-color: hsl(209,100%,37.5%);
+  border: 1px solid hsl(209,100%,37.5%);
+}
+
+.logout_button {
+  background-color: hsl(206,100%,52%);
+  border: 1px solid hsl(206,100%,52%);
+  margin: 12px 0 0 4px;
+  color: white;
+}
+
+.logout_button:hover {
   background-color: hsl(209,100%,37.5%);
   border: 1px solid hsl(209,100%,37.5%);
 }
