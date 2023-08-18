@@ -12,17 +12,19 @@ import './App.css';
 export default function App() {
   return (
     <BrowserRouter>
-      <Header />
-
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/post" element={<Post />} />
-        <Route path="/ask" element={<Ask />} />
-      </Routes>
-
-      <Footer />
+      <div className="grid-container">
+        <Header />
+        <div className="content-wrapper">
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/post" element={<Post />} />
+            <Route path="/ask" element={<Ask />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

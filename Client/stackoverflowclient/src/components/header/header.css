@@ -1,7 +1,7 @@
 header {
   width: 100%;
   /* height: 3rem; */
-  line-height: 3.5rem;
+  line-height: 57px;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +10,7 @@ header {
   border-bottom: solid 1px rgb(187, 184, 184);
   border-top: solid 2px hsl(27,90%,55%);
   display: flex;
+  z-index: 100;
 }
 
 header > .logo_container > a > img {
