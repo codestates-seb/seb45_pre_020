@@ -21,4 +21,4 @@ const searchSlice = createSlice({
 });
 
 export const { setSearch, filterData } = searchSlice.actions;
-export default searchSlice;
+export default searchSlice.reducer;
