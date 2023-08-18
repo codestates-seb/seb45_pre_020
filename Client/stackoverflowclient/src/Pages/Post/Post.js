@@ -6,47 +6,6 @@ import './Post.css';
 import axios from 'axios';
 
 const Post = () => {
-  // const data = {
-  //   post: {
-  //     info: {
-  //       user_id: 'question_user',
-  //       postTitle: 'question_title',
-  //       post_id: 1,
-  //       createdAt: '2023.09.01',
-  //       post_status: true,
-  //       adopted: true,
-  //       answerList: [
-  //         {
-  //           info: {
-  //             user_id: 'answer_user',
-  //             createdAt: '2023.09.01',
-  //             modifiedAt: '2023.09.02',
-  //             post_status: true,
-  //             adopted: true,
-  //             recommendCount: 3,
-  //           },
-  //           content: 'answer',
-  //           type: 'answer',
-  //           comment: [
-  //             {
-  //               info: { user_id: 'comment_user1', createdAt: '2023.09.01' },
-  //               content: 'comment1',
-  //               type: 'comment',
-  //             },
-  //             {
-  //               info: { user_id: 'comment_user2', createdAt: '2023.09.01' },
-  //               content: 'comment2',
-  //               type: 'comment',
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //     content: 'question',
-  //     type: 'question',
-  //   },
-  // };
-  console.log(new URLSearchParams(location.search).get('postId'));
   const Data = data.filter(
     (el) =>
       el.post.info.post_id ===
@@ -58,8 +17,7 @@ const Post = () => {
   // const getData = () => {
   //   axios
   //     .get(`${process.env.REACT_APP_API_URL}/`)
-  //     .then(() => {
-  //       //인자에 res 추가필요
+  //     .then((res) => {
   //       //setData(res.data)
   //       //console.log(res.data.message);
   //     })
