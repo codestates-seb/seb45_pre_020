@@ -1,11 +1,14 @@
-import { useState /*useEffect*/ } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // import axios from 'axios';
 import './Ask.css';
 
 export default function Ask() {
   // 프로퍼티에 onLogin을 추가
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.loginSlice.user);
+  const isLoggedIn = !!user;
 
   const [title, setTitle] = useState(''); // 제목을 관리하기 위한 state
   const [content, setContent] = useState(''); // 내용을 관리하기 위한 state
@@ -57,16 +60,15 @@ export default function Ask() {
       // }
     }
   };
-  // useEffect(() => {
-  //   if (!onLogin) {
-  //     alert('로그인이 필요합니다.');
-  //     navigate('/login');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert('로그인이 필요합니다.');
+      navigate('/login');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
-      {/* {onLogin ? ( */}
       <div className="Allcontainer">
         <div className="question">
           <h2 className="question-heading">Ask a public question</h2>
@@ -94,7 +96,6 @@ export default function Ask() {
           Post Your Question
         </button>
       </div>
-      {/* ) : null} */}
     </>
   );
 }

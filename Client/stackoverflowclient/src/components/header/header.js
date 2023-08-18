@@ -1,15 +1,19 @@
 import Logo from '../../atoms/logo/logo';
 import './header.css';
 import '../../atoms/button/button.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/reducers/loginSlice';
 import React from 'react';
 
 function Header() {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.loginSlice.user);
   const dispatch = useDispatch();
-
+  const handleAskClick = () => {
+    alert('로그인이 필요합니다.');
+    navigate('/login');
+  };
   const isLoggedIn = !!user;
 
   return (
@@ -18,9 +22,15 @@ function Header() {
         <Logo />
       </div>
       <div className="button_container">
-        <Link to="/ask">
-          <button className="ask_button">Ask Question</button>
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/ask">
+            <button className="ask_button">Ask Question</button>
+          </Link>
+        ) : (
+          <button className="ask_button" onClick={handleAskClick}>
+            Ask Question
+          </button>
+        )}
         {isLoggedIn ? (
           <button className="logout_button" onClick={() => dispatch(logout())}>
             Log out
