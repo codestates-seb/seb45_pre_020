@@ -4,6 +4,7 @@ import '../../atoms/button/button.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/reducers/loginSlice';
+import React from 'react';
 
 function Header() {
   const user = useSelector((state) => state.loginSlice.user);
@@ -39,4 +40,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default React.memo(Header);

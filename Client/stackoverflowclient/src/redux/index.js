@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // localStorage를 사용하려면 이렇게 import
 import rootReducer from './reducers/rootReducer'; // rootReducer를 import
 
@@ -18,5 +18,3 @@ export const store = configureStore({
     return [...getDefaultMiddleware({ serializableCheck: false })];
   },
 });
-
-export const persistor = persistStore(store);
