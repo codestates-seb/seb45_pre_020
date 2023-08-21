@@ -5,15 +5,21 @@ import com.coffeetime.pro20.exception.BusinessLogicException;
 import com.coffeetime.pro20.exception.ExceptionCode;
 import com.coffeetime.pro20.member.entity.Member;
 import com.coffeetime.pro20.member.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +30,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final ApplicationEventPublisher publisher;
 
-    // (1) 추가
+    @Autowired
     private final PasswordEncoder passwordEncoder;
     private final CustomAuthorityUtils authorityUtils;
 
@@ -69,6 +75,19 @@ public class MemberService {
         findMember.setModifiedAt(LocalDateTime.now());
 
         return memberRepository.save(findMember);
+    }
+
+    //회원수정
+    @Transactional
+    public void memberUpdate(Member member) {
+        Member persistance = memberRepository.findById(member.getUserId())
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("회원 찾기 실패");
+                });
+        String rawPassword = member.getPassword();
+        String encPassword = passwordEncoder.encode(rawPassword);
+        persistance.setPassword(encPassword);
+        persistance.setEmail(member.getEmail());
     }
 
     @Transactional(readOnly = true)
