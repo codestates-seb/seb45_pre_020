@@ -1,5 +1,6 @@
 package com.coffeetime.pro20.answer;
 
+import com.coffeetime.pro20.comment.Comment;
 import com.coffeetime.pro20.member.entity.Member;
 import com.coffeetime.pro20.post.Post;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -32,6 +35,9 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "userId")
     private Member member;
+
+    @OneToMany(mappedBy = "answer")
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

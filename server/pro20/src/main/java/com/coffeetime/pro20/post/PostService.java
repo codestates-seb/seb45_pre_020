@@ -3,7 +3,6 @@ package com.coffeetime.pro20.post;
 import com.coffeetime.pro20.answer.Answer;
 import com.coffeetime.pro20.answer.AnswerRepository;
 import com.coffeetime.pro20.answer.AnswerSaveRequestDto;
-import com.coffeetime.pro20.board.Board;
 import com.coffeetime.pro20.exception.BusinessLogicException;
 import com.coffeetime.pro20.exception.ExceptionCode;
 import com.coffeetime.pro20.member.entity.Member;

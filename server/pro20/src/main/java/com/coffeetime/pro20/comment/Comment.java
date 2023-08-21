@@ -1,5 +1,7 @@
 package com.coffeetime.pro20.comment;
 
+import com.coffeetime.pro20.answer.Answer;
+import com.coffeetime.pro20.member.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +23,13 @@ public class Comment {
     @Column(nullable = false)
     private String commentContents;
 
-    @Column
-    private long userId; // 코멘트 작성자
+    @ManyToOne //many=comment, one=user
+    @JoinColumn(name = "userId")
+    private Member member; // 코멘트 작성자
 
-    @Column
-    private long answerId; // 매핑 예정
+    @ManyToOne // many = comment, one = answer
+    @JoinColumn(name = "answerId")
+    private Answer answer; // 매핑 예정
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
