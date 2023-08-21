@@ -24,11 +24,11 @@ public class Comment {
     private String commentContents;
 
     @ManyToOne //many=comment, one=user
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private Member member; // 코멘트 작성자
 
     @ManyToOne // many = comment, one = answer
-    @JoinColumn(name = "answerId")
+    @JoinColumn(name = "answer_id")
     private Answer answer; // 매핑 예정
 
     @Column(nullable = false)

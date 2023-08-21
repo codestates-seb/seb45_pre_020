@@ -29,11 +29,11 @@ public class Answer {
     private String answerContents;
 
     @ManyToOne
-    @JoinColumn(name = "postId")
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private Member member;
 
     @OneToMany(mappedBy = "answer")

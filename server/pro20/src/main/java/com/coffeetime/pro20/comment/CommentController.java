@@ -1,8 +1,10 @@
 package com.coffeetime.pro20.comment;
 
+import com.coffeetime.pro20.answer.AnswerService;
 import com.coffeetime.pro20.comment.dto.CommentResponseDto;
 import com.coffeetime.pro20.comment.dto.PatchCommentDto;
 import com.coffeetime.pro20.comment.dto.PostCommentDto;
+import com.coffeetime.pro20.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,16 +21,24 @@ import java.util.stream.Collectors;
 @CrossOrigin
 public class CommentController {
     private final CommentService commentService;
+    private final MemberService memberService;
+    private final AnswerService answerService;
     private final CommentMapper mapper;
 
-    public CommentController(CommentService commentService, CommentMapper mapper) {
+    public CommentController(CommentService commentService, MemberService memberService, AnswerService answerService, CommentMapper mapper) {
         this.commentService = commentService;
+        this.memberService = memberService;
+        this.answerService = answerService;
         this.mapper = mapper;
     }
 
     @PostMapping
     public ResponseEntity postComment(@RequestBody PostCommentDto postCommentDto) {
         Comment comment = mapper.postCommentDtoToComment(postCommentDto);
+
+        comment.setAnswer(answerService.findAnswer(postCommentDto.getAnswerId()));
+        comment.setMember(memberService.findMember(postCommentDto.getUserId()));
+
         commentService.createComment(comment);
 
         log.info("# 코멘트가 작성됐습니다!");

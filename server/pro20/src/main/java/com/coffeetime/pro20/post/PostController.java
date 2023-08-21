@@ -1,6 +1,7 @@
 package com.coffeetime.pro20.post;
 
 import com.coffeetime.pro20.answer.AnswerSaveRequestDto;
+import com.coffeetime.pro20.member.service.MemberService;
 import com.coffeetime.pro20.post.dto.ResponseDto;
 import com.coffeetime.pro20.post.dto.PatchPostDto;
 import com.coffeetime.pro20.post.dto.PostPostDto;
@@ -22,16 +23,19 @@ import java.util.stream.Collectors;
 @Validated
 public class PostController {
     private final PostService postService;
+    private final MemberService memberService;
     private final PostMapper mapper;
 
-    public PostController(PostService postService, PostMapper mapper) {
+    public PostController(PostService postService, MemberService memberService, PostMapper mapper) {
         this.postService = postService;
+        this.memberService = memberService;
         this.mapper = mapper;
     }
 
     @PostMapping
     public ResponseEntity postPost(@RequestBody PostPostDto postPostDto) {
         Post post = mapper.postPostDtoToPost(postPostDto);
+        post.setMember(memberService.findMember(postPostDto.getUserId()));
         postService.createPost(post);
         log.info("# 질문이 게시됐습니다!");
         String message = "질문이 게시됐습니다!";
