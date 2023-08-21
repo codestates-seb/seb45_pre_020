@@ -32,7 +32,7 @@ export default function Ask() {
       console.log(title, content);
       //   axios
       //     .post(
-      //       // 'BackEndServerURL',
+      //       `${process.env.REACT_APP_API_URL}/posts`,
       //       {
       //         info: {
       //           title: title,

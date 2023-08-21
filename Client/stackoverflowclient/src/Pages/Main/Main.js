@@ -10,7 +10,7 @@ export default function Main() {
   const searchRef = useRef();
 
   //   useEffect(()=>{
-  //     axios.get('http://localhost:3000/questions')
+  //     axios.get(`${process.env.REACT_APP_API_URL}/posts/all?page=1&size=5`) // 전체 질문 조회
   //     .then((res)=>{
   //         setQuestions(res.data);
   //     }
