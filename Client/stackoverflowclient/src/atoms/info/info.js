@@ -10,7 +10,14 @@ const Info = ({ data, type }) => {
   const user = useSelector((state) => state.loginSlice.user);
   const modifyMode = useSelector((state) => state.modifySlice.modifyMode);
   const dispatch = useDispatch();
-  const post_id = data.post_id || data.answer_id || data.comment_id;
+  let post_id;
+  if (type === 'question') {
+    post_id = data.post_id;
+  } else if (type === 'answer') {
+    post_id = data.answer_id;
+  } else if (type === 'comment') {
+    post_id = data.comment_id;
+  }
   const addRecommend = () => {
     //서버에 추천수 +1하는 코드
     if (isLogin) {
@@ -23,7 +30,9 @@ const Info = ({ data, type }) => {
     dispatch(setAddClicked({ openInput: !openInput, post_id: post_id }));
   };
   const setModifymode = () => {
-    dispatch(setModifyMode({ modifyMode: !modifyMode, post_id: post_id }));
+    dispatch(
+      setModifyMode({ modifyMode: !modifyMode, post_id: post_id, type: type }),
+    );
   };
   return (
     <div className="postinfo_container">
@@ -49,12 +58,6 @@ const Info = ({ data, type }) => {
             ? `${data.modifiedAt}에 수정`
             : `${data.createdAt}에 작성`}
         </div>
-        {user === data.user_id ? (
-          <div className="button_container">
-            <button onClick={setModifymode}>수정</button>
-            <button>삭제</button>
-          </div>
-        ) : null}
         {type === 'answer' ? (
           <div className="postinfo">
             <button onClick={addRecommend} className="recommend_button">
@@ -70,6 +73,13 @@ const Info = ({ data, type }) => {
             </button>
           </div>
         ) : null}
+        {/* {user === data.user_id ? ( //todo: size조절 */}
+        <div className="author_button_container">
+          <button onClick={setModifymode} className="author_button">
+            수정
+          </button>
+          <button className="author_button">삭제</button>
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   modifyMode: false,
   post_id: '',
+  type: '',
 };
 
 const modifySlice = createSlice({
@@ -10,9 +11,10 @@ const modifySlice = createSlice({
   initialState,
   reducers: {
     setModifyMode(state, action) {
-      const { modifyMode, post_id } = action.payload;
+      const { modifyMode, post_id, type } = action.payload;
       state.modifyMode = modifyMode;
       state.post_id = post_id;
+      state.type = type;
     },
   },
 });

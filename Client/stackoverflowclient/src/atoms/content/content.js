@@ -32,7 +32,7 @@ const Content = ({ content, type, post_status, post_id }) => {
     //todo:id도 넘겨야함
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/`, comment)
+        .post(`${process.env.REACT_APP_API_URL}/comments`, comment)
         .then((res) => {
           console.log(res.data.message);
           dispatch(setAddClicked(!openInput));

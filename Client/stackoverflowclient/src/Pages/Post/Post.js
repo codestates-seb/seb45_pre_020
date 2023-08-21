@@ -1,7 +1,7 @@
 import Info from '../../atoms/info/info';
 import Content from '../../atoms/content/content';
 import { useNavigate } from 'react-router-dom';
-import { useState /*useEffect*/ } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import data from '../../dummy/dummy';
 import './Post.css';
@@ -17,6 +17,7 @@ const Post = () => {
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const modifyMode = useSelector((state) => state.modifySlice.modifyMode);
   const postId = useSelector((state) => state.modifySlice.post_id);
+  const type = useSelector((state) => state.modifySlice.type);
   const navigate = useNavigate();
   //페이지 진입시 필요 데이터를 서버에 요청
   //const [data,setData] = useState({});
@@ -33,17 +34,9 @@ const Post = () => {
   // };
   const [inputVal, setInputVal] = useState({
     answer: '',
-    modifiedQuestion: Data.post.content,
-    modifiedAnswer: postId
-      ? Data.post.info.answerList.filter(
-          (el) => el.info.answer_id === postId,
-        )[0].content
-      : '',
-    modifiedComment: postId
-      ? Data.post.info.answerList
-          .find((el) => el.comment.find((el) => el.info.comment_id === postId))
-          .comment.find((el) => el.info.comment_id === postId).content
-      : '',
+    modifiedQuestion: '',
+    modifiedAnswer: '',
+    modifiedComment: '',
   });
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -96,12 +89,19 @@ const Post = () => {
     setInputVal({
       answer: '',
       modifiedQuestion: Data.post.content,
-      modifiedAnswer: Data.post.info.answerList.filter(
-        (el) => el.info.answer_id === postId,
-      )[0].content,
-      modifiedComment: Data.post.info.answerList
-        .find((el) => el.comment.find((el) => el.info.comment_id === postId))
-        .comment.find((el) => el.info.comment_id === postId).content,
+      modifiedAnswer:
+        type === 'answer'
+          ? Data.post.info.answerList.find((el) => el.info.answer_id === postId)
+              .content
+          : '',
+      modifiedComment:
+        type === 'comment'
+          ? Data.post.info.answerList
+              .find((el) =>
+                el.comment.find((el) => el.info.comment_id === postId),
+              )
+              .comment.find((el) => el.info.comment_id === postId).content
+          : '',
     });
   };
   const modifyQuestion = () => {
@@ -168,9 +168,10 @@ const Post = () => {
       });
   };
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    // getData();
+    initialize();
+  }, [postId]);
   return (
     <div className="post_body_container" id={Data.post.info.post_id}>
       <div className="post">
@@ -184,12 +185,13 @@ const Post = () => {
                 onChange={handleInput}
                 name="modifiedQuestion"
                 id="question_input"
+                className="modify_input"
               ></textarea>
-            </div>
-            <div className="modify_button_container">
-              <button onClick={modifyQuestion} className="modify_button">
-                수정하기
-              </button>
+              <div className="modify_button_container">
+                <button onClick={modifyQuestion} className="modify_button">
+                  수정
+                </button>
+              </div>
             </div>
           </div>
         ) : (
@@ -214,12 +216,13 @@ const Post = () => {
                     onChange={handleInput}
                     name="modifiedAnswer"
                     id="answer_input"
+                    className="modify_input"
                   ></textarea>
-                </div>
-                <div className="modify_button_container">
-                  <button onClick={modifyAnswer} className="modify_button">
-                    수정하기
-                  </button>
+                  <div className="modify_button_container">
+                    <button onClick={modifyAnswer} className="modify_button">
+                      수정
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -245,15 +248,16 @@ const Post = () => {
                             onChange={handleInput}
                             name="modifiedComment"
                             id="comment_input"
+                            className="modify_input"
                           ></textarea>
-                        </div>
-                        <div className="modify_button_container">
-                          <button
-                            onClick={modifyComment}
-                            className="modify_button"
-                          >
-                            수정하기
-                          </button>
+                          <div className="modify_button_container">
+                            <button
+                              onClick={modifyComment}
+                              className="modify_button"
+                            >
+                              수정
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ) : (

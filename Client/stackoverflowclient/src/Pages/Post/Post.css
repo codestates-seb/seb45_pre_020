@@ -1,6 +1,6 @@
 .post_body_container {
-    margin-left: 15vw;
-    width: 70vw;
+    margin-left: 10vw;
+    width: 80vw;
     height: auto;
     min-height: 100%;
     padding: 4rem 2vw 50px 2vw; 
@@ -67,3 +67,40 @@
     background-color: rgb(228, 228, 228);
     border: 1px solid rgb(228, 228, 228);
 }
+
+.form_container {
+    background-color: #a0c3aa;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    gap: 10px;
+}
+.modify_input {
+    flex: 5 1 0;
+    border-radius: 5px;
+}
+
+.modify_button_container {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+}
+
+.modify_button {
+    box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+    background-color: white;
+    border: 1px solid white;
+ }
+ 
+ .modify_button:hover {
+     background-color: rgb(228, 228, 228);
+     border: 1px solid rgb(228, 228, 228);
+ }
