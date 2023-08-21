@@ -37,7 +37,7 @@ public class Answer {
     private Member member;
 
     @OneToMany(mappedBy = "answer")
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

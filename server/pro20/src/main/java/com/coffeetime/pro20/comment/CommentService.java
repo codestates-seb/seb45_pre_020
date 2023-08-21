@@ -38,7 +38,7 @@ public class CommentService {
     }
 
     public List<Comment> findComments(long answerId) {
-        return commentRepository.findByAnswerId(answerId);
+        return commentRepository.findByAnswer_AnswerId(answerId);
     }
 
     public void deleteComment(long commentId) {

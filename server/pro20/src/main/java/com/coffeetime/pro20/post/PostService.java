@@ -86,7 +86,7 @@ public class PostService {
         Answer answer = Answer.builder()
                 .member(member)
                 .post(post)
-                .answerContents(answerSaveRequestDto.getContent())
+                .answerContents(answerSaveRequestDto.getAnswerContents())
                 .build();
 
         answerRepository.save(answer);
