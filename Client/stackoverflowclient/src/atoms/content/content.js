@@ -44,9 +44,21 @@ const Content = ({ content, type, post_status, post_id }) => {
   return (
     <div className="content_container">
       {post_status ? (
-        <div className="content">{content}</div>
+        <div
+          className={type === 'comment' ? 'content comment_content' : 'content'}
+        >
+          {content}
+        </div>
       ) : (
-        <div className="content deleted">삭제된 내용입니다.</div>
+        <div
+          className={
+            type === 'comment'
+              ? 'content deleted comment_content'
+              : 'content deleted'
+          }
+        >
+          삭제된 내용입니다.
+        </div>
       )}
       {openInput && type === 'answer' && post_id === postID ? (
         <div className="comment_add_container">

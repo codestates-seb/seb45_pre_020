@@ -14,6 +14,10 @@
     border-bottom-left-radius: 5px;
 }
 
+.comment_content {
+    font-size: 12px;
+}
+
 .comment_add_container {
     background-color: #a0c3aa;
     padding: 20px;
