@@ -85,17 +85,17 @@ public class PostController {
     }
 
     @PostMapping("/{post-id}/answer")
-    public ResponseDto<Integer> answerSave(@PathVariable ("post-id") long postId,
-                                           @RequestBody AnswerSaveRequestDto answerSaveRequestDto) {
+    public ResponseEntity answerSave(@PathVariable ("post-id") long postId,
+                                     @RequestBody AnswerSaveRequestDto answerSaveRequestDto) {
 
         postService.postAnswer(answerSaveRequestDto);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{post-id}/answer/{answer-id}")
-    public ResponseDto<Integer> answerDelete(@PathVariable ("post-id") long postId,
-                                             @PathVariable ("answer-id") long answerId) {
+    public ResponseEntity answerDelete(@PathVariable ("post-id") long postId,
+                                       @PathVariable ("answer-id") long answerId) {
         postService.answerDelete(answerId);
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

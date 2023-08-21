@@ -1,5 +1,6 @@
 package com.coffeetime.pro20.member.entity;
 
+import com.coffeetime.pro20.post.Post;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.List;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private long userId;
 
     @Column(nullable = false, updatable = false, unique = true)
@@ -26,6 +28,9 @@ public class Member {
 
     @Column(length = 100, nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "member")
+    private List<Post> posts;
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)

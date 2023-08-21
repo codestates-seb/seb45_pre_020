@@ -30,13 +30,13 @@ public class Post {
     private String postContents;
 
     @ManyToOne //many=post, one=user
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private Member member; // 게시글 작성자
 
     @OneToMany (mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"post"})
     @OrderBy("answerId desc")
-    private List<Answer> answers = new ArrayList<>();
+    private List<Answer> answers;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
