@@ -2,10 +2,11 @@ import Info from '../../atoms/info/info';
 import Content from '../../atoms/content/content';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { setModifyMode } from '../../redux/reducers/modifySlice';
 import data from '../../dummy/dummy';
 import './Post.css';
-import axios from 'axios';
 
 const Post = () => {
   const Data = data.filter(
@@ -19,6 +20,7 @@ const Post = () => {
   const postId = useSelector((state) => state.modifySlice.post_id);
   const type = useSelector((state) => state.modifySlice.type);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   //페이지 진입시 필요 데이터를 서버에 요청
   //const [data,setData] = useState({});
   // const getData = () => {
@@ -64,18 +66,7 @@ const Post = () => {
         .post(`${process.env.REACT_APP_API_URL}/posts`, answer)
         .then((res) => {
           console.log(res.data.message);
-          setInputVal({
-            answer: '',
-            modifiedQuestion: Data.post.content,
-            modifiedAnswer: Data.post.info.answerList.filter(
-              (el) => el.info.answer_id === postId,
-            )[0].content,
-            modifiedComment: Data.post.info.answerList
-              .find((el) =>
-                el.comment.find((el) => el.info.comment_id === postId),
-              )
-              .comment.find((el) => el.info.comment_id === postId).content,
-          });
+          initialize();
         })
         .catch((error) => {
           console.error('Error : ', error);
@@ -104,6 +95,27 @@ const Post = () => {
           : '',
     });
   };
+  const offModifyMode = () => {
+    dispatch(
+      setModifyMode({
+        modifyMode: !modifyMode,
+        post_id: '',
+        type: '',
+      }),
+    );
+  };
+  const patchFunction = (mode, body) => {
+    axios
+      .patch(`${process.env.REACT_APP_API_URL}/${mode}/${postId}`, body)
+      .then((res) => {
+        console.log(res.data.message);
+        initialize();
+        offModifyMode();
+      })
+      .catch((error) => {
+        console.error('Error : ', error);
+      });
+  };
   const modifyQuestion = () => {
     const modifiedValue = {
       postId: postId,
@@ -113,15 +125,7 @@ const Post = () => {
         .slice(0, 11)
         .replace(/(\s*)/g, ''),
     };
-    axios
-      .patch(`${process.env.REACT_APP_API_URL}/posts/${postId}`, modifiedValue)
-      .then((res) => {
-        console.log(res.data.message);
-        initialize();
-      })
-      .catch((error) => {
-        console.error('Error : ', error);
-      });
+    patchFunction('posts', modifiedValue);
   };
   const modifyAnswer = () => {
     const modifiedValue = {
@@ -132,18 +136,7 @@ const Post = () => {
         .slice(0, 11)
         .replace(/(\s*)/g, ''),
     };
-    axios
-      .patch(
-        `${process.env.REACT_APP_API_URL}/answers/${postId}`,
-        modifiedValue,
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        initialize();
-      })
-      .catch((error) => {
-        console.error('Error : ', error);
-      });
+    patchFunction('answers', modifiedValue);
   };
   const modifyComment = () => {
     const modifiedValue = {
@@ -154,18 +147,7 @@ const Post = () => {
         .slice(0, 11)
         .replace(/(\s*)/g, ''),
     };
-    axios
-      .patch(
-        `${process.env.REACT_APP_API_URL}/comments/${postId}`,
-        modifiedValue,
-      )
-      .then((res) => {
-        console.log(res.data.message);
-        initialize();
-      })
-      .catch((error) => {
-        console.error('Error : ', error);
-      });
+    patchFunction('comments', modifiedValue);
   };
 
   useEffect(() => {
