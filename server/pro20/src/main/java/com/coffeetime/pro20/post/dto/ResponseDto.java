@@ -1,4 +1,4 @@
-package com.coffeetime.pro20.board;
+package com.coffeetime.pro20.post.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

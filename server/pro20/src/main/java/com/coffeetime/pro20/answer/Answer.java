@@ -1,7 +1,7 @@
 package com.coffeetime.pro20.answer;
 
-import com.coffeetime.pro20.board.Board;
 import com.coffeetime.pro20.member.entity.Member;
+import com.coffeetime.pro20.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,19 +20,22 @@ public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long answerId;
 
     @Column(nullable = false)
-    private String content;
+    private String answerContents;
 
     @ManyToOne
-    @JoinColumn(name = "posrId")
-    private Board board;
+    @JoinColumn(name = "postId")
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private Member member;
 
-    @CreationTimestamp
-    private LocalDateTime createAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(nullable = false, name = "LAST_MODIFIED_AT")
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 }

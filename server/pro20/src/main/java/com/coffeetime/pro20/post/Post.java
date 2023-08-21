@@ -1,5 +1,8 @@
 package com.coffeetime.pro20.post;
 
+import com.coffeetime.pro20.answer.Answer;
+import com.coffeetime.pro20.member.entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,9 +28,14 @@ public class Post {
     @Column(columnDefinition = "text")
     private String postContents;
 
-    // 매핑 추가 예정
-    @Column
-    private long userId; // 게시글 작성자
+    @ManyToOne //many=post, one=user
+    @JoinColumn(name = "userId")
+    private Member member; // 게시글 작성자
+
+    @OneToMany (mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"post"})
+    @OrderBy("answerId desc")
+    private List<Answer> answers;
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

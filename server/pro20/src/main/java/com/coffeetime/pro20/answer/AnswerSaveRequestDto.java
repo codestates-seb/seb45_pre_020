@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AnswerSaveRequestDto {
     private long userId;
-    private int postId;
+    private long postId;
     private String content;
 }

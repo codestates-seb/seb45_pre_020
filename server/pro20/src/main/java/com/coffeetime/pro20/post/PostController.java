@@ -1,5 +1,7 @@
 package com.coffeetime.pro20.post;
 
+import com.coffeetime.pro20.answer.AnswerSaveRequestDto;
+import com.coffeetime.pro20.post.dto.ResponseDto;
 import com.coffeetime.pro20.post.dto.PatchPostDto;
 import com.coffeetime.pro20.post.dto.PostPostDto;
 import com.coffeetime.pro20.post.dto.PostResponseDto;
@@ -80,5 +82,18 @@ public class PostController {
         log.info("# 질문 삭제 완료");
         String message = "질문이 삭제됐습니다.";
         return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{post-id}/answer")
+    public ResponseDto<Integer> answerSave(@RequestBody AnswerSaveRequestDto answerSaveRequestDto) {
+
+        postService.postAnswer(answerSaveRequestDto);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    @DeleteMapping("/{post-id}/answer/{answer-id}")
+    public ResponseDto<Integer> answerDelete(@PathVariable int answerId) {
+        postService.answerDelete(answerId);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }
