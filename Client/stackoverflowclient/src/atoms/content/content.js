@@ -12,10 +12,6 @@ const Content = ({ content, type, post_status, post_id }) => {
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(
-    inputVal,
-    new Date().toLocaleString().slice(0, 11).replace(/(\s*)/g, ''),
-  );
   const addComment = () => {
     const comment = {
       info: {

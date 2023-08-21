@@ -30,9 +30,19 @@ const Info = ({ data, type }) => {
     dispatch(setAddClicked({ openInput: !openInput, post_id: post_id }));
   };
   const setModifymode = () => {
-    dispatch(
-      setModifyMode({ modifyMode: !modifyMode, post_id: post_id, type: type }),
-    );
+    if (!modifyMode) {
+      dispatch(
+        setModifyMode({
+          modifyMode: !modifyMode,
+          post_id: post_id,
+          type: type,
+        }),
+      );
+    } else if (modifyMode) {
+      dispatch(
+        setModifyMode({ modifyMode: !modifyMode, post_id: '', type: '' }),
+      );
+    }
   };
   return (
     <div className="postinfo_container">
@@ -73,13 +83,16 @@ const Info = ({ data, type }) => {
             </button>
           </div>
         ) : null}
-        {/* {user === data.user_id ? ( //todo: size조절 */}
-        <div className="author_button_container">
-          <button onClick={setModifymode} className="author_button">
-            수정
-          </button>
-          <button className="author_button">삭제</button>
-        </div>
+        {
+          /*user === data.user_id && */ data.post_status ? ( //todo: size조절
+            <div className="author_button_container">
+              <button onClick={setModifymode} className="author_button">
+                수정
+              </button>
+              <button className="author_button">삭제</button>
+            </div>
+          ) : null
+        }
       </div>
     </div>
   );

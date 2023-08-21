@@ -9,12 +9,8 @@ import data from '../../dummy/dummy';
 import './Post.css';
 
 const Post = () => {
-  const Data = data.filter(
-    (el) =>
-      el.post.info.post_id ===
-      Number(new URLSearchParams(location.search).get('postId')),
-  )[0];
-  console.log(Data);
+  const pageId = Number(new URLSearchParams(location.search).get('postId'));
+  const Data = data.filter((el) => el.post.info.post_id === pageId)[0];
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const modifyMode = useSelector((state) => state.modifySlice.modifyMode);
   const postId = useSelector((state) => state.modifySlice.post_id);
@@ -79,7 +75,7 @@ const Post = () => {
   const initialize = () => {
     setInputVal({
       answer: '',
-      modifiedQuestion: Data.post.content,
+      modifiedQuestion: type === 'question' ? Data.post.content : '',
       modifiedAnswer:
         type === 'answer'
           ? Data.post.info.answerList.find((el) => el.info.answer_id === postId)
@@ -103,6 +99,12 @@ const Post = () => {
         type: '',
       }),
     );
+    setInputVal({
+      answer: '',
+      modifiedQuestion: '',
+      modifiedAnswer: '',
+      modifiedComment: '',
+    });
   };
   const patchFunction = (mode, body) => {
     axios
@@ -154,13 +156,17 @@ const Post = () => {
     // getData();
     initialize();
   }, [postId]);
+
+  console.log(inputVal, postId);
   return (
     <div className="post_body_container" id={Data.post.info.post_id}>
       <div className="post">
         <Info data={Data.post.info} type={Data.post.type} />
         {modifyMode && postId === Data.post.info.post_id ? (
           <div className="form_container">
-            <label htmlFor="question_input">질문수정</label>
+            <label htmlFor="question_input" className="menu_title">
+              질문수정
+            </label>
             <div className="input_container">
               <textarea
                 value={inputVal.modifiedQuestion}
@@ -191,7 +197,9 @@ const Post = () => {
             <Info data={el.info} type={el.type} />
             {modifyMode && postId === el.info.answer_id ? (
               <div className="form_container">
-                <label htmlFor="answer_input">답변 수정</label>
+                <label htmlFor="answer_input" className="menu_title">
+                  답변 수정
+                </label>
                 <div className="input_container">
                   <textarea
                     value={inputVal.modifiedAnswer}
@@ -223,7 +231,9 @@ const Post = () => {
                     <Info data={el.info} type={el.type} />
                     {modifyMode && postId === el.info.comment_id ? (
                       <div className="form_container">
-                        <label htmlFor="comment_input">코멘트 수정</label>
+                        <label htmlFor="comment_input" className="menu_title">
+                          코멘트 수정
+                        </label>
                         <div className="input_container">
                           <textarea
                             value={inputVal.modifiedComment}
@@ -257,7 +267,9 @@ const Post = () => {
         </div>
       ))}
       <div className="answer_add_container">
-        <label htmlFor="answer_input">답변 추가</label>
+        <label htmlFor="answer_input" className="menu_title">
+          답변 추가
+        </label>
         <div className="answer_input_container">
           <textarea
             placeholder={
