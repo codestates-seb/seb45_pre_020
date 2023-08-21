@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setAddClicked } from '../../redux/reducers/commentSilce';
+import { setModifyMode } from '../../redux/reducers/modifySlice';
 import '../button/button.css';
 import './info.css';
 
 const Info = ({ data, type }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
+  const user = useSelector((state) => state.loginSlice.user);
+  const modifyMode = useSelector((state) => state.modifySlice.modifyMode);
   const dispatch = useDispatch();
+  const post_id = data.post_id || data.answer_id || data.comment_id;
   const addRecommend = () => {
     //서버에 추천수 +1하는 코드
     if (isLogin) {
@@ -16,7 +20,10 @@ const Info = ({ data, type }) => {
     }
   };
   const openCommentinput = () => {
-    dispatch(setAddClicked(!openInput));
+    dispatch(setAddClicked({ openInput: !openInput, post_id: post_id }));
+  };
+  const setModifymode = () => {
+    dispatch(setModifyMode({ modifyMode: !modifyMode, post_id: post_id }));
   };
   return (
     <div className="postinfo_container">
@@ -42,6 +49,12 @@ const Info = ({ data, type }) => {
             ? `${data.modifiedAt}에 수정`
             : `${data.createdAt}에 작성`}
         </div>
+        {user === data.user_id ? (
+          <div className="button_container">
+            <button onClick={setModifymode}>수정</button>
+            <button>삭제</button>
+          </div>
+        ) : null}
         {type === 'answer' ? (
           <div className="postinfo">
             <button onClick={addRecommend} className="recommend_button">

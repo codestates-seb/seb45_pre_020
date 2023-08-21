@@ -17,17 +17,28 @@ const data = [
               post_status: true,
               adopted: true,
               recommendCount: 3,
+              answer_id: 2,
             },
             content: 'answer',
             type: 'answer',
             comment: [
               {
-                info: { user_id: 'comment_user1', createdAt: '2023.09.01' },
+                info: {
+                  user_id: 'comment_user1',
+                  createdAt: '2023.09.01',
+                  post_status: true,
+                  comment_id: 3,
+                },
                 content: 'comment1',
                 type: 'comment',
               },
               {
-                info: { user_id: 'comment_user2', createdAt: '2023.09.01' },
+                info: {
+                  user_id: 'comment_user2',
+                  createdAt: '2023.09.01',
+                  post_status: true,
+                  comment_id: 4,
+                },
                 content: 'comment2',
                 type: 'comment',
               },
@@ -57,17 +68,28 @@ const data = [
               post_status: true,
               adopted: true,
               recommendCount: 3,
+              answer_id: 1,
             },
             content: 'answer2',
             type: 'answer',
             comment: [
               {
-                info: { user_id: 'comment_user1', createdAt: '2023.09.01' },
+                info: {
+                  user_id: 'comment_user1',
+                  createdAt: '2023.09.01',
+                  post_status: false,
+                  comment_id: 1,
+                },
                 content: 'comment1',
                 type: 'comment',
               },
               {
-                info: { user_id: 'comment_user2', createdAt: '2023.09.01' },
+                info: {
+                  user_id: 'comment_user2',
+                  createdAt: '2023.09.01',
+                  post_status: true,
+                  comment_id: 2,
+                },
                 content: 'comment2',
                 type: 'comment',
               },

@@ -7,7 +7,7 @@ const persistConfig = {
   key: 'root', // 저장소에 저장될 키 (아무 문자열)
   storage, // 스토리지 설정 (localStorage, sessionStorage 등)
   whitelist: ['loginSlice'],
-  blacklist: ['Comment', 'searchSlice', 'signupSlice'],
+  blacklist: ['Comment', 'searchSlice', 'signupSlice', 'modifySlice'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

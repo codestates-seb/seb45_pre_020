@@ -5,8 +5,9 @@ import { setAddClicked } from '../../redux/reducers/commentSilce';
 import axios from 'axios';
 import './content.css';
 
-const Content = ({ content, type }) => {
+const Content = ({ content, type, post_status, post_id }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
+  const postID = useSelector((state) => state.Comment.post_id);
   const [inputVal, setInputVal] = useState('');
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const navigate = useNavigate();
@@ -46,8 +47,12 @@ const Content = ({ content, type }) => {
   };
   return (
     <div className="content_container">
-      <div className="content">{content}</div>
-      {openInput && type === 'answer' ? (
+      {post_status ? (
+        <div className="content">{content}</div>
+      ) : (
+        <div className="content deleted">삭제된 내용입니다.</div>
+      )}
+      {openInput && type === 'answer' && post_id === postID ? (
         <div className="comment_add_container">
           <label htmlFor="comment_input">코멘트 추가</label>
           <div className="input_container">

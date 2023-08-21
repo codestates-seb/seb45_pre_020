@@ -51,3 +51,7 @@
      background-color: rgb(228, 228, 228);
      border: 1px solid rgb(228, 228, 228);
  }
+
+ .deleted {
+    color: #6a6a6a;
+ }
