@@ -1,11 +1,8 @@
 package com.coffeetime.pro20.post;
 
-import com.coffeetime.pro20.answer.Answer;
 import com.coffeetime.pro20.answer.AnswerRepository;
-import com.coffeetime.pro20.answer.AnswerSaveRequestDto;
 import com.coffeetime.pro20.exception.BusinessLogicException;
 import com.coffeetime.pro20.exception.ExceptionCode;
-import com.coffeetime.pro20.member.entity.Member;
 import com.coffeetime.pro20.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -69,30 +66,5 @@ public class PostService {
         Optional<Post> optionalPost = postRepository.findById(postId);
         return optionalPost.orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.POST_NOT_FOUND));
-    }
-
-    public void postAnswer(AnswerSaveRequestDto answerSaveRequestDto) {
-
-        Member member = memberRepository.findById(answerSaveRequestDto.getUserId())
-                .orElseThrow(()->{
-                    return new IllegalArgumentException("댓글 쓰기 실패: 사용자 아이디를 찾을 수 없습니다.");
-                }); //영속화 완료
-
-        Post post = postRepository.findById(answerSaveRequestDto.getPostId())
-                .orElseThrow(()->{
-                    return new IllegalArgumentException("댓글 쓰기 실패: 게시글 아이디를 찾을 수 없습니다.");
-                }); //영속화 완료
-
-        Answer answer = Answer.builder()
-                .member(member)
-                .post(post)
-                .answerContents(answerSaveRequestDto.getAnswerContents())
-                .build();
-
-        answerRepository.save(answer);
-    }
-
-    public void answerDelete(long answerId) {
-        answerRepository.deleteById(answerId);
     }
 }

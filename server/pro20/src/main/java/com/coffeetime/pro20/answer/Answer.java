@@ -3,10 +3,7 @@ package com.coffeetime.pro20.answer;
 import com.coffeetime.pro20.comment.Comment;
 import com.coffeetime.pro20.member.entity.Member;
 import com.coffeetime.pro20.post.Post;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -14,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Entity
+@Getter
+@Setter
 public class Answer {
 
     @Id

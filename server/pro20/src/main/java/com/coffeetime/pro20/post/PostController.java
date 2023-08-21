@@ -87,19 +87,4 @@ public class PostController {
         String message = "질문이 삭제됐습니다.";
         return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
     }
-
-    @PostMapping("/{post-id}/answer")
-    public ResponseEntity answerSave(@PathVariable ("post-id") long postId,
-                                     @RequestBody AnswerSaveRequestDto answerSaveRequestDto) {
-
-        postService.postAnswer(answerSaveRequestDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{post-id}/answer/{answer-id}")
-    public ResponseEntity answerDelete(@PathVariable ("post-id") long postId,
-                                       @PathVariable ("answer-id") long answerId) {
-        postService.answerDelete(answerId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }
