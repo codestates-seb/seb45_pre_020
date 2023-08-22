@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,13 +22,18 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private long postId;
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String postTitle;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "text", nullable = false)
     private String postContents;
+
+    @ColumnDefault("0")
+    @Column(nullable = false)
+    private Integer viewCount;
 
     @ManyToOne //many=post, one=user
     @JoinColumn(name = "user_id")
