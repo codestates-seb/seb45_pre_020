@@ -10,6 +10,8 @@ button {
   border: 1px solid hsl(27,90%,55%);
   margin-top: 12px;
   color: white;
+  white-space: nowrap;
+
 }
 
 .ask_button:hover {
@@ -22,6 +24,7 @@ button {
   border: 1px solid hsl(205,46%,92%);
   margin: 0 0 0 4px;
   color: hsl(205,47%,42%);
+  white-space: nowrap;
 }
 
 .login_button:hover {
@@ -34,6 +37,7 @@ button {
   border: 1px solid hsl(206,100%,52%);
   margin: 0 0 0 4px;
   color: white;
+  white-space: nowrap;
 }
 
 .signup_button:hover {
@@ -46,6 +50,7 @@ button {
   border: 1px solid hsl(206,100%,52%);
   margin: 12px 0 0 4px;
   color: white;
+  white-space: nowrap;
 }
 
 .logout_button:hover {

@@ -9,8 +9,6 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.loginSlice.user);
-  const access = useSelector((state) => state.loginSlice.accessToken);
-  const refresh = useSelector((state) => state.loginSlice.refreshToken);
 
   const [inputEmail, setInputEmail] = useState('');
   const [inputPw, setInputPw] = useState('');
@@ -29,7 +27,7 @@ export default function Login() {
       password: inputPw,
     };
 
-    console.log(access, refresh, user);
+    console.log(user);
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/login`, userinfo)
@@ -37,18 +35,18 @@ export default function Login() {
         const accessToken = response.headers.get('Authorization').toString();
         const refreshToken = response.headers.get('Refresh').toString();
 
+        // // 엑세스 토큰 로컬 스토리지에 저장
+        // localStorage.setItem('accessToken', accessToken);
+
+        // // 리프레시 토큰 로컬 스토리지에 저장 (옵션)
+        // localStorage.setItem('refreshToken', refreshToken);
+
         console.log('username: ' + response.data.username);
         console.log('메세지' + response.data.message);
         console.log('권한 : ' + response.headers.get('Authorization'));
         console.log('리프레쉬 : ' + response.headers.get('Refresh'));
         console.log(response.data.username);
-        dispatch(
-          login({
-            accessToken,
-            refreshToken,
-            username: response.data.username,
-          }),
-        );
+        dispatch(login(response.data.username));
 
         alert('로그인을 성공했습니다!');
         navigate('/');

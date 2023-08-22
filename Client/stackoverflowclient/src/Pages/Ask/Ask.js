@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import './Ask.css';
 
 export default function Ask() {
-  // 프로퍼티에 onLogin을 추가
   const navigate = useNavigate();
   const user = useSelector((state) => state.loginSlice.user);
   const isLoggedIn = !!user;
@@ -37,14 +36,12 @@ export default function Ask() {
       //         info: {
       //           title: title,
       //           user_id: user_id,
-      //           content: content,
       //           createdAt: new Date()
       //             .toLocaleString()
       //             .slice(0, 11)
       //             .replace(/(\s*)/g, ''),
       //           post_status: true,
       //           adopted: false,
-      //           recommendCount: 0,
       //         },
       //         content: question,
       //         type: 'question',
