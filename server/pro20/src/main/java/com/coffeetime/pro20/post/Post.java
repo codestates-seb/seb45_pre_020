@@ -31,6 +31,8 @@ public class Post {
     @Column(columnDefinition = "text", nullable = false)
     private String postContents;
 
+    private boolean adopted;
+
     @ManyToOne //many=post, one=user
     @JoinColumn(name = "user_id")
     private Member member; // 게시글 작성자

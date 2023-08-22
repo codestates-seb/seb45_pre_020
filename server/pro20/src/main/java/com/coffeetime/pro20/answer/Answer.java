@@ -25,6 +25,8 @@ public class Answer {
     @Column(nullable = false)
     private String answerContents;
 
+    private boolean adopted;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;

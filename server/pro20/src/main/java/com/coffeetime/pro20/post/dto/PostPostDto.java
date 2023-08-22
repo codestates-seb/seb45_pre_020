@@ -4,10 +4,22 @@ import com.coffeetime.pro20.member.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class PostPostDto {
-    private String postTitle;
+    private PostInfo postInfo;
     private String postContents;
-    private long userId;
+    private String type;
+
+    @Getter
+    @Setter
+    public static class PostInfo {
+        private String postTitle;
+        private long userId;
+        private String createdAt;
+        private boolean postStatus = true;
+        private boolean adopted;
+    }
 }
