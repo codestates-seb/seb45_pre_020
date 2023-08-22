@@ -31,7 +31,11 @@ public class Post {
     @Column(columnDefinition = "text", nullable = false)
     private String postContents;
 
+    @Column(nullable = false)
     private boolean adopted;
+
+    @Column(nullable = false)
+    private boolean postStatus;
 
     @ManyToOne //many=post, one=user
     @JoinColumn(name = "user_id")

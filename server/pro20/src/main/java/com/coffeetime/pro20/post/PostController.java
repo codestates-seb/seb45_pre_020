@@ -35,7 +35,7 @@ public class PostController {
     @PostMapping
     public ResponseEntity postPost(@RequestBody PostPostDto postPostDto) {
         Post post = mapper.postPostDtoToPost(postPostDto);
-        post.setMember(memberService.findMember(postPostDto.getUserId()));
+        post.setMember(memberService.findMember(postPostDto.getPostInfo().getUserId()));
         postService.createPost(post);
         log.info("# 질문이 게시됐습니다!");
         String message = "질문이 게시됐습니다!";

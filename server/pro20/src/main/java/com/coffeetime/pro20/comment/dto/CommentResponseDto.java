@@ -8,10 +8,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CommentResponseDto {
-    private long commentId;
-    private long userId;
-    private long answerId;
+    private CommentResponseInfo commentResponseInfo;
     private String commentContents;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private String type = "comment";
+
+    @Getter
+    @Setter
+    public static class CommentResponseInfo {
+        private long userId;
+        private LocalDateTime createdAt;
+    }
 }
