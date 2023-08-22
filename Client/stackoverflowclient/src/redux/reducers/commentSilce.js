@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   addClicked: false,
-  post_id: '',
+  answerId: '',
 };
 
 const commentSlice = createSlice({
@@ -10,9 +10,9 @@ const commentSlice = createSlice({
   initialState,
   reducers: {
     setAddClicked(state, action) {
-      const { openInput, post_id } = action.payload;
+      const { openInput, answerId } = action.payload;
       state.addClicked = openInput;
-      state.post_id = post_id;
+      state.answerId = answerId;
     },
   },
 });

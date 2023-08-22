@@ -7,28 +7,30 @@ import './content.css';
 
 const Content = ({ content, type, post_status, post_id }) => {
   const openInput = useSelector((state) => state.Comment.addClicked);
-  const postID = useSelector((state) => state.Comment.post_id);
+  const answerId = useSelector((state) => state.Comment.answerId);
   const [inputVal, setInputVal] = useState('');
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
+  const user = useSelector((state) => state.loginSlice.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const addComment = () => {
-    const comment = {
-      info: {
-        user_id: '',
-        createdAt: new Date()
-          .toLocaleString()
-          .slice(0, 11)
-          .replace(/(\s*)/g, ''),
+    const body = {
+      answerId,
+      comment: {
+        info: {
+          user_id: user,
+          createdAt: new Date()
+            .toLocaleString()
+            .slice(0, 11)
+            .replace(/(\s*)/g, ''),
+        },
+        content: inputVal,
+        type: 'comment',
       },
-      content: inputVal,
-      type: 'comment',
     };
-    //comment와 answer_id 둘다 넘겨줘야함
-    //todo:id도 넘겨야함
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/comments`, comment)
+        .post(`${process.env.REACT_APP_API_URL}/comments`, body)
         .then((res) => {
           console.log(res.data.message);
           dispatch(setAddClicked(!openInput));
@@ -60,7 +62,7 @@ const Content = ({ content, type, post_status, post_id }) => {
           삭제된 내용입니다.
         </div>
       )}
-      {openInput && type === 'answer' && post_id === postID ? (
+      {openInput && type === 'answer' && post_id === answerId ? (
         <div className="comment_add_container">
           <label htmlFor="comment_input">코멘트 추가</label>
           <div className="input_container">

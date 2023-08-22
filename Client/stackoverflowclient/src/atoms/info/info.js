@@ -19,15 +19,15 @@ const Info = ({ data, type }) => {
     post_id = data.comment_id;
   }
   const addRecommend = () => {
-    //서버에 추천수 +1하는 코드
     if (isLogin) {
+      //서버에 추천수 +1하는 코드
       return;
     } else {
       alert('로그인이 필요합니다.');
     }
   };
   const openCommentinput = () => {
-    dispatch(setAddClicked({ openInput: !openInput, post_id: post_id }));
+    dispatch(setAddClicked({ openInput: !openInput, answerId: post_id }));
   };
   const setModifymode = () => {
     if (!modifyMode) {
@@ -84,7 +84,7 @@ const Info = ({ data, type }) => {
           </div>
         ) : null}
         {
-          /*user === data.user_id && */ data.post_status ? ( //todo: size조절
+          /*user === data.user_id && */ data.post_status ? (
             <div className="author_button_container">
               <button onClick={setModifymode} className="author_button">
                 수정

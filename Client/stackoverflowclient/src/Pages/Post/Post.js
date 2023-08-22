@@ -21,7 +21,7 @@ const Post = () => {
   //const [data,setData] = useState({});
   // const getData = () => {
   //   axios
-  //     .get(`${process.env.REACT_APP_API_URL}/`)
+  //     .get(`${process.env.REACT_APP_API_URL}/posts/${pageId}`)
   //     .then((res) => {
   //       //setData(res.data)
   //       //console.log(res.data.message);
@@ -40,26 +40,27 @@ const Post = () => {
     const { name, value } = e.target;
     setInputVal({ ...inputVal, [name]: value });
   };
-  //서버에 answer에 해당되는 데이터, 어떤 post에 추가해야하는지 post_id도 넘겨줘야함,
-  //todo:id 넘기는 부분
   const addAnswer = () => {
-    const answer = {
-      info: {
-        user_id: '',
-        createdAt: new Date()
-          .toLocaleString()
-          .slice(0, 11)
-          .replace(/(\s*)/g, ''),
-        post_status: true, //상의 필요
-        adopted: false,
-        recommendCount: 0,
+    const body = {
+      postId: pageId,
+      answer: {
+        info: {
+          user_id: '',
+          createdAt: new Date()
+            .toLocaleString()
+            .slice(0, 11)
+            .replace(/(\s*)/g, ''),
+          post_status: true, //상의 필요
+          adopted: false,
+          recommendCount: 0,
+        },
+        content: inputVal,
+        type: 'answer',
       },
-      content: inputVal,
-      type: 'answer',
     };
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/posts`, answer)
+        .post(`${process.env.REACT_APP_API_URL}/posts`, body)
         .then((res) => {
           console.log(res.data.message);
           initialize();
@@ -131,8 +132,8 @@ const Post = () => {
   };
   const modifyAnswer = () => {
     const modifiedValue = {
-      postId: postId,
-      postContents: inputVal.modifiedAnswer,
+      answerId: postId,
+      answerContents: inputVal.modifiedAnswer,
       modifiedAt: new Date()
         .toLocaleString()
         .slice(0, 11)
@@ -142,8 +143,8 @@ const Post = () => {
   };
   const modifyComment = () => {
     const modifiedValue = {
-      postId: postId,
-      postContents: inputVal.modifiedComment,
+      commentId: postId,
+      commentContents: inputVal.modifiedComment,
       modifiedAt: new Date()
         .toLocaleString()
         .slice(0, 11)
