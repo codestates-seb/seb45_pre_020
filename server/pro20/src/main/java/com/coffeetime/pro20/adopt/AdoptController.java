@@ -12,7 +12,7 @@ import static com.coffeetime.pro20.response.HttpResponseEntity.success;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/adopt")
+@RequestMapping("/posts/adopt")
 @RestController
 public class AdoptController {
 
