@@ -17,11 +17,16 @@ const Post = () => {
   const type = useSelector((state) => state.modifySlice.type);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accessToken = useSelector((state) => state.loginSlice.accessToken);
   //페이지 진입시 필요 데이터를 서버에 요청
   //const [data,setData] = useState({});
   // const getData = () => {
   //   axios
-  //     .get(`${process.env.REACT_APP_API_URL}/posts/${pageId}`)
+  //     .get(`${process.env.REACT_APP_API_URL}/posts/${pageId}`, {
+  //   headers: {
+  //     Authorization: accessToken,
+  //   },
+  // })
   //     .then((res) => {
   //       //setData(res.data)
   //       //console.log(res.data.message);
@@ -60,7 +65,11 @@ const Post = () => {
     };
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/posts`, body)
+        .post(`${process.env.REACT_APP_API_URL}/posts`, body, {
+          headers: {
+            Authorization: accessToken,
+          },
+        })
         .then((res) => {
           console.log(res.data.message);
           initialize();
@@ -109,7 +118,11 @@ const Post = () => {
   };
   const patchFunction = (mode, body) => {
     axios
-      .patch(`${process.env.REACT_APP_API_URL}/${mode}/${postId}`, body)
+      .patch(`${process.env.REACT_APP_API_URL}/${mode}/${postId}`, body, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
       .then((res) => {
         console.log(res.data.message);
         initialize();

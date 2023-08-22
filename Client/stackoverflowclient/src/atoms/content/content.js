@@ -11,6 +11,7 @@ const Content = ({ content, type, post_status, post_id }) => {
   const [inputVal, setInputVal] = useState('');
   const isLogin = useSelector((state) => state.loginSlice.isLogin);
   const user = useSelector((state) => state.loginSlice.user);
+  const accessToken = useSelector((state) => state.loginSlice.accessToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const addComment = () => {
@@ -30,7 +31,11 @@ const Content = ({ content, type, post_status, post_id }) => {
     };
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/comments`, body)
+        .post(`${process.env.REACT_APP_API_URL}/comments`, body, {
+          headers: {
+            Authorization: accessToken,
+          },
+        })
         .then((res) => {
           console.log(res.data.message);
           dispatch(setAddClicked(!openInput));
