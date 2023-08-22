@@ -31,10 +31,6 @@ public class Post {
     @Column(columnDefinition = "text", nullable = false)
     private String postContents;
 
-    @ColumnDefault("0")
-    @Column(nullable = false)
-    private Integer viewCount;
-
     @ManyToOne //many=post, one=user
     @JoinColumn(name = "user_id")
     private Member member; // 게시글 작성자
