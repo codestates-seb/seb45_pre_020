@@ -41,7 +41,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private Member member; // 게시글 작성자
 
-    @OneToMany (mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany (mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"post"})
     @OrderBy("answerId desc")
     private List<Answer> answers;

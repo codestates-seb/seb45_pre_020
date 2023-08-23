@@ -12,6 +12,7 @@ import java.util.List;
 public class PostResponseDto {
     private PostResponseInfo postResponseInfo;
     private String postContents;
+    private String type = "question";
 
     @Getter
     @Setter
@@ -22,6 +23,6 @@ public class PostResponseDto {
         private LocalDateTime createdAt;
         private boolean postStatus = true;
         private boolean adopted;
-        private List<AnswerResponseDto> answerResponseDto;
+        private List<AnswerResponseDto> answerList;
     }
 }

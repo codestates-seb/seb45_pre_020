@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,12 +33,13 @@ public class AnswerController {
 
         Answer answer = mapper.postAnswerDtoToAnswer(postAnswerDto);
         answer.setPost(postService.findPost(postAnswerDto.getPostId()));
-        answer.setMember(memberService.findMember(postAnswerDto.getUserId()));
+        answer.setMember(memberService.findMember(postAnswerDto.getAnswerInfo().getUserId()));
 
         answerService.createAnswer(answer);
-        AnswerResponseDto response = mapper.answerToAnswerResponseDto(answer);
+        String message = "댓글이 등록됐습니다!";
+//        AnswerResponseDto response = mapper.answerToAnswerResponseDto(answer);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 
     @PatchMapping
@@ -52,7 +54,7 @@ public class AnswerController {
     }
 
     @GetMapping("/{answer-id}")
-    public ResponseEntity getAnswer(@PathVariable ("answer-id") long answerId) {
+    public ResponseEntity getAnswer(@PathVariable ("answer-id") @Positive long answerId) {
 
         Answer answer = answerService.findAnswer(answerId);
         AnswerResponseDto response = mapper.answerToAnswerResponseDto(answer);

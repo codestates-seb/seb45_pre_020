@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class PostPostDto {
     private PostInfo postInfo;
     private String postContents;
-    private String type = "post";
+    private String type = "question";
 
     @Getter
     @Setter

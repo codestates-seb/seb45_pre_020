@@ -1,6 +1,10 @@
 package com.coffeetime.pro20.post;
 
+import com.coffeetime.pro20.answer.Answer;
+import com.coffeetime.pro20.answer.AnswerMapper;
 import com.coffeetime.pro20.answer.AnswerSaveRequestDto;
+import com.coffeetime.pro20.answer.AnswerService;
+import com.coffeetime.pro20.answer.dto.AnswerResponseDto;
 import com.coffeetime.pro20.member.service.MemberService;
 import com.coffeetime.pro20.post.dto.ResponseDto;
 import com.coffeetime.pro20.post.dto.PatchPostDto;
@@ -26,10 +30,21 @@ public class PostController {
     private final MemberService memberService;
     private final PostMapper mapper;
 
-    public PostController(PostService postService, MemberService memberService, PostMapper mapper) {
+    private final AnswerService answerService;
+    private final AnswerMapper answerMapper;
+
+//    public PostController(PostService postService, MemberService memberService, PostMapper mapper) {
+//        this.postService = postService;
+//        this.memberService = memberService;
+//        this.mapper = mapper;
+//    }
+
+    public PostController(PostService postService, MemberService memberService, PostMapper mapper, AnswerService answerService, AnswerMapper answerMapper) {
         this.postService = postService;
         this.memberService = memberService;
         this.mapper = mapper;
+        this.answerService = answerService;
+        this.answerMapper = answerMapper;
     }
 
     @PostMapping
@@ -87,4 +102,5 @@ public class PostController {
         String message = "질문이 삭제됐습니다.";
         return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
     }
+
 }

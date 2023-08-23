@@ -6,8 +6,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostAnswerDto {
-    private long postId; // 질문
+    private long postId;
+    private AnswerInfo answerInfo;
     private String answerContents;
-    private long userId; // 작성자
+    private String type = "answer";
 
+    @Getter
+    @Setter
+    public static class AnswerInfo {
+        private long userId;
+        private String createdAt;
+        private boolean postStatus = true;
+        private boolean adopted;
+    }
 }

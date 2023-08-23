@@ -25,9 +25,13 @@ public class Answer {
     @Column(nullable = false)
     private String answerContents;
 
+    @Column(nullable = false)
     private boolean adopted;
 
-    @ManyToOne
+    @Column(nullable = false)
+    private boolean postStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
