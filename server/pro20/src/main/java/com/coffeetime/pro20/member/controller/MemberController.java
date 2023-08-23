@@ -1,14 +1,20 @@
 package com.coffeetime.pro20.member.controller;
 
+import com.coffeetime.pro20.post.dto.ResponseDto;
 import com.coffeetime.pro20.member.dto.MemberPatchDto;
 import com.coffeetime.pro20.member.dto.MemberPostDto;
 import com.coffeetime.pro20.member.dto.MemberResponseDto;
 import com.coffeetime.pro20.member.entity.Member;
 import com.coffeetime.pro20.member.mapper.MemberMapper;
 import com.coffeetime.pro20.member.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +30,9 @@ import java.util.stream.Collectors;
 public class MemberController {
     private final MemberService memberService;
     private final MemberMapper mapper;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     // (1) MemberMapper DI
     public MemberController(MemberService memberService, MemberMapper mapper) {
@@ -69,7 +78,7 @@ public class MemberController {
                 HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity getMembers(@Positive @RequestParam int page,
                                      @Positive @RequestParam int size) {
         Page<Member> pageMembers = memberService.findMembers(page - 1, size);
@@ -91,5 +100,19 @@ public class MemberController {
         memberService.deleteMember(userId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    //회원수정
+    @PutMapping("/")
+    public ResponseDto<Integer> update(@RequestBody Member member) {
+        memberService.memberUpdate(member);
+
+        //세션등록
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(member.getUsername(),
+                        member.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 }
