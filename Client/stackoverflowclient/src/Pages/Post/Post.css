@@ -67,6 +67,7 @@
    background-color: white;
    border: 1px solid white;
    box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+   white-space: nowrap;
 }
 
 .add_answer_button:hover {

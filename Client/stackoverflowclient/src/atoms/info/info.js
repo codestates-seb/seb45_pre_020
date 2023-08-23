@@ -83,16 +83,14 @@ const Info = ({ data, type }) => {
             </button>
           </div>
         ) : null}
-        {
-          /*user === data.user_id && */ data.post_status ? (
-            <div className="author_button_container">
-              <button onClick={setModifymode} className="author_button">
-                수정
-              </button>
-              <button className="author_button">삭제</button>
-            </div>
-          ) : null
-        }
+        {user === data.user_id && data.post_status ? (
+          <div className="author_button_container">
+            <button onClick={setModifymode} className="author_button">
+              수정
+            </button>
+            <button className="author_button">삭제</button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
