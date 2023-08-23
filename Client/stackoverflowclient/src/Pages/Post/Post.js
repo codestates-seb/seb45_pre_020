@@ -28,7 +28,7 @@ const Post = () => {
       })
       .then((res) => {
         setData(res.data);
-        console.log(res.data.message);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log('Error : ', error);
@@ -47,24 +47,23 @@ const Post = () => {
   const addAnswer = () => {
     const body = {
       postId: pageId,
-      answer: {
-        info: {
-          user_id: '',
-          createdAt: new Date()
-            .toLocaleString()
-            .slice(0, 11)
-            .replace(/(\s*)/g, ''),
-          post_status: true, //상의 필요
-          adopted: false,
-          recommendCount: 0,
-        },
-        content: inputVal,
-        type: 'answer',
+      answerInfo: {
+        userId: 1,
+        createdAt: new Date()
+          .toLocaleString()
+          .slice(0, 11)
+          .replace(/(\s*)/g, ''),
+        postStatus: true, //상의 필요
+        adopted: false,
+        // recommendCount: 0,
       },
+      answerContents: inputVal.answer,
+      type: 'answer',
     };
+    console.log(body);
     if (isLogin) {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/posts`, body, {
+        .post(`${process.env.REACT_APP_API_URL}/answers`, body, {
           headers: {
             Authorization: accessToken,
           },
@@ -142,28 +141,28 @@ const Post = () => {
     };
     patchFunction('posts', modifiedValue);
   };
-  const modifyAnswer = () => {
-    const modifiedValue = {
-      answerId: postId,
-      answerContents: inputVal.modifiedAnswer,
-      modifiedAt: new Date()
-        .toLocaleString()
-        .slice(0, 11)
-        .replace(/(\s*)/g, ''),
-    };
-    patchFunction('answers', modifiedValue);
-  };
-  const modifyComment = () => {
-    const modifiedValue = {
-      commentId: postId,
-      commentContents: inputVal.modifiedComment,
-      modifiedAt: new Date()
-        .toLocaleString()
-        .slice(0, 11)
-        .replace(/(\s*)/g, ''),
-    };
-    patchFunction('comments', modifiedValue);
-  };
+  // const modifyAnswer = () => {
+  //   const modifiedValue = {
+  //     answerId: postId,
+  //     answerContents: inputVal.modifiedAnswer,
+  //     modifiedAt: new Date()
+  //       .toLocaleString()
+  //       .slice(0, 11)
+  //       .replace(/(\s*)/g, ''),
+  //   };
+  //   patchFunction('answers', modifiedValue);
+  // };
+  // const modifyComment = () => {
+  //   const modifiedValue = {
+  //     commentId: postId,
+  //     commentContents: inputVal.modifiedComment,
+  //     modifiedAt: new Date()
+  //       .toLocaleString()
+  //       .slice(0, 11)
+  //       .replace(/(\s*)/g, ''),
+  //   };
+  //   patchFunction('comments', modifiedValue);
+  // };
 
   useEffect(() => {
     if (Data === null) {
@@ -175,10 +174,10 @@ const Post = () => {
     return <div className="post_body_container">loading</div>;
   } else if (Data !== null) {
     return (
-      <div className="post_body_container" id={Data.post.info.post_id}>
+      <div className="post_body_container" id={Data.postResponseInfo.postId}>
         <div className="post">
-          <Info data={Data.post.info} type={Data.post.type} />
-          {modifyMode && postId === Data.post.info.post_id ? (
+          <Info data={Data.postResponseInfo} type={Data.type} />
+          {modifyMode && postId === Data.postResponseInfo.postId ? (
             <div className="form_container">
               <label htmlFor="question_input" className="menu_title">
                 질문수정
@@ -200,14 +199,14 @@ const Post = () => {
             </div>
           ) : (
             <Content
-              content={Data.post.content}
-              type={Data.post.type}
-              post_status={Data.post.info.post_status}
-              post_id={Data.post.info.post_id}
+              content={Data.postContents}
+              type={Data.type}
+              post_status={Data.postResponseInfo.postStatus}
+              post_id={Data.postResponseInfo.postId}
             />
           )}
         </div>
-        {Data.post.info.answerList.map((el) => (
+        {/* {Data.post.info.answerList.map((el) => (
           <div className="answerlist" key={el.info.user_id}>
             <div className="answser">
               <Info data={el.info} type={el.type} />
@@ -281,7 +280,7 @@ const Post = () => {
                 : null}
             </div>
           </div>
-        ))}
+        ))} */}
         <div className="answer_add_container">
           <label htmlFor="answer_input" className="menu_title">
             답변 추가

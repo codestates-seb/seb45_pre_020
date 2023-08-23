@@ -17,11 +17,6 @@ export default function PostLink({
     navigate(`/post/?postId=${postId}`);
   };
 
-  //   const userInfoData = {
-  //     'data-created-at': createdAt,
-  //     'data-user-id': user_Id,
-  //   };
-
   return (
     <div
       className="MainPostCardContainer"

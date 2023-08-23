@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import axios from 'axios';
+import axios from 'axios';
 import './Ask.css';
 
 export default function Ask() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.loginSlice.user);
   const isLoggedIn = !!user;
-
+  const accessToken = useSelector((state) => state.loginSlice.accessToken);
   const [title, setTitle] = useState(''); // 제목을 관리하기 위한 state
   const [content, setContent] = useState(''); // 내용을 관리하기 위한 state
   const [isTitleVaild, setIsTitleVaild] = useState(false); // 제목이 유효한지 확인하기 위한 state
@@ -24,39 +24,56 @@ export default function Ask() {
     const newContent = e.target.value;
     setContent(newContent);
     setIsContentVaild(newContent.trim() !== '');
+    console.log({
+      postInfo: {
+        postTitle: title,
+        userId: 1,
+        createdAt: new Date()
+          .toLocaleString()
+          .slice(0, 11)
+          .replace(/(\s*)/g, ''),
+        // post_status: true,
+        adopted: false,
+      },
+      postContents: content,
+      type: 'question',
+    });
   };
 
   const handleSubmit = () => {
     if (isTitleVaild && isContentVaild) {
-      console.log(title, content);
-      //   axios
-      //     .post(
-      //       `${process.env.REACT_APP_API_URL}/posts`,
-      //       {
-      //         info: {
-      //           title: title,
-      //           user_id: user_id,
-      //           createdAt: new Date()
-      //             .toLocaleString()
-      //             .slice(0, 11)
-      //             .replace(/(\s*)/g, ''),
-      //           post_status: true,
-      //           adopted: false,
-      //         },
-      //         content: question,
-      //         type: 'question',
-      //       },
-      //       { headers: { 'Content-Type': 'application/json' } },
-      //     )
-      //     .then((res) => {
-      //       navigate('/');
-      //     })
-      //     .catch((err) => console.error('잘못된 접근입니다.'));
-      // } else {
-      //   alert('제목과 내용을 입력해주세요.');
-      // }
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/posts`,
+          {
+            postInfo: {
+              postTitle: title,
+              userId: 1,
+              createdAt: new Date()
+                .toLocaleString()
+                .slice(0, 11)
+                .replace(/(\s*)/g, ''),
+              // post_status: true,
+              adopted: false,
+            },
+            postContents: content,
+            type: 'question',
+          },
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          },
+        )
+        .then((res) => {
+          navigate('/');
+        })
+        .catch((err) => console.error('잘못된 접근입니다.'));
+    } else {
+      alert('제목과 내용을 입력해주세요.');
     }
   };
+
   useEffect(() => {
     if (!isLoggedIn) {
       alert('로그인이 필요합니다.');
