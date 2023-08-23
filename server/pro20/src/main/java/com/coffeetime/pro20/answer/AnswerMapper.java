@@ -11,6 +11,7 @@ import org.mapstruct.Mappings;
 public interface AnswerMapper {
 
     @Mappings({
+//            @Mapping(target = "postId", source = "post.postId"),
             @Mapping(target = "answerContents", source = "answerContents"),
             @Mapping(target = "postStatus", source = "answerInfo.postStatus"),
             @Mapping(target = "adopted", source = "answerInfo.adopted")
@@ -24,7 +25,8 @@ public interface AnswerMapper {
             @Mapping(target = "answerResponseInfo.createdAt", source = "createdAt"),
             @Mapping(target = "answerResponseInfo.modifiedAt", source = "modifiedAt"),
             @Mapping(target = "answerResponseInfo.postStatus", source = "postStatus"),
-            @Mapping(target = "answerResponseInfo.adopted", source = "adopted")
+            @Mapping(target = "answerResponseInfo.adopted", source = "adopted"),
+            @Mapping(target = "commentResponseDto", source = "comments")
     })
     AnswerResponseDto answerToAnswerResponseDto(Answer answer);
 }
