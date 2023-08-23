@@ -1,0 +1,15 @@
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 5rem;
+}
+
+.MainPostLinkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
