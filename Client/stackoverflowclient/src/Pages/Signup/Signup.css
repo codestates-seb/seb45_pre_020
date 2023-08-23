@@ -1,0 +1,60 @@
+.signup_page {
+  background-color: rgb(234, 234, 234);
+  width: 100vw;
+  height: 100vh;
+}
+
+.signup_form {
+  height: 500px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 1px rgb(210, 210, 210);
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(210, 210, 210);
+}
+
+.signup_wrapper {
+  height: 400px;
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+input {
+  height: 30px;
+  width: 300px;
+  border: solid 1px rgb(172, 172, 172);
+  border-radius: 5px;
+}
+
+.signup-button {
+  background-color: hsl(206,100%,52%);
+  border: 1px solid hsl(206,100%,52%);
+  color: white;
+  margin-top: 22.5px;
+  height: 35px;
+  width: 306px;
+}
+
+.signup-button:hover {
+  background-color: hsl(209,100%,37.5%);
+  border: 1px solid hsl(209,100%,37.5%);
+}
+
+a {
+  text-decoration: none;
+  color: hsl(206,100%,52%);
+}
