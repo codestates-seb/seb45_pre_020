@@ -30,21 +30,10 @@ public class PostController {
     private final MemberService memberService;
     private final PostMapper mapper;
 
-    private final AnswerService answerService;
-    private final AnswerMapper answerMapper;
-
-//    public PostController(PostService postService, MemberService memberService, PostMapper mapper) {
-//        this.postService = postService;
-//        this.memberService = memberService;
-//        this.mapper = mapper;
-//    }
-
-    public PostController(PostService postService, MemberService memberService, PostMapper mapper, AnswerService answerService, AnswerMapper answerMapper) {
+    public PostController(PostService postService, MemberService memberService, PostMapper mapper) {
         this.postService = postService;
         this.memberService = memberService;
         this.mapper = mapper;
-        this.answerService = answerService;
-        this.answerMapper = answerMapper;
     }
 
     @PostMapping

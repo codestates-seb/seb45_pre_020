@@ -37,7 +37,7 @@ public class CommentController {
         Comment comment = mapper.postCommentDtoToComment(postCommentDto);
 
         comment.setAnswer(answerService.findAnswer(postCommentDto.getAnswerId()));
-        comment.setMember(memberService.findMember(postCommentDto.getUserId()));
+        comment.setMember(memberService.findMember(postCommentDto.getCommentInfo().getUserId()));
 
         commentService.createComment(comment);
 

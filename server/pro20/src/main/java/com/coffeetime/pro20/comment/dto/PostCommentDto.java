@@ -7,6 +7,14 @@ import lombok.Setter;
 @Setter
 public class PostCommentDto {
     private long answerId;
-    private long userId;
+    private CommentInfo commentInfo;
     private String commentContents;
+    private String type = "comment";
+
+    @Getter
+    @Setter
+    public static class CommentInfo {
+        private long userId;
+        private String createdAt;
+    }
 }
